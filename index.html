@@ -1153,6 +1153,86 @@
     color:var(--fg-2); font-size:12.5px; line-height:1.55; font-weight:300;
   }
   .pipe-vis-foot .vfi .desc b{ color:var(--fg); font-weight:600;}
+
+  /* ============ MOBILE OVERFLOW FIXES ============ */
+  @media (max-width: 760px){
+    :root{ --pad: 20px; }
+
+    /* Defensive: let grid items shrink below intrinsic content size */
+    .hero-grid > *, .about-grid > *, .dn-grid > *,
+    .net-grid, .net-grid > *, .dn-stat-strip, .dn-stat-strip > *,
+    .case-body > *, .case-text, .proof-set, .proof-set > *, .proof-row > *,
+    .section-head > *, .perf-split > *, .pipe-body > *,
+    .ix-feature > *, .ix-body, .ix-trio-grid > *, .ix-camp-grid > *,
+    .ach-grid > *, .num-strip > *, .three > *,
+    .pipe-flow > *, .pipe-modules > *,
+    .ph-bars, .ph-bar-row, .ph-bar-name,
+    .dn-copy, .dn-copy p{ min-width: 0; }
+
+    /* Force single-column for brand cards — pair layout is too tight on phones */
+    .net-grid{ grid-template-columns: 1fr; }
+    .net-grid .brand-card[style*="grid-column"]{ grid-column: auto !important; }
+
+    /* Stats strip: tighter padding + smaller numbers so 3 columns fit */
+    .dn-stat-strip{ grid-template-columns: repeat(3, 1fr); }
+    .dn-stat-strip .ni{ padding: 18px 12px; }
+    .dn-stat-strip .ni .num{ font-size: clamp(22px, 6.5vw, 30px); }
+    .dn-stat-strip .ni .lab{ font-size: 9px; letter-spacing:.18em; }
+
+    /* Brand cards: truncate name/handle so they never push the card wider */
+    .brand-card{ min-width: 0; padding: 16px 16px 14px; gap:12px; }
+    .brand-card .avatar{ width:42px; height:42px; }
+    .brand-card .meta{ min-width: 0; overflow: hidden; }
+    .brand-card .name,
+    .brand-card .handle{
+      overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    }
+    .brand-card .foll{ font-size: 16px; }
+
+    /* Hero title: allow wrapping on tiny screens */
+    .hero h1{ white-space: normal; }
+
+    /* Section number out of the way of edge */
+    .section-no{ left: 20px; }
+
+    /* Case meta rows wrap cleanly */
+    .case .case-meta .row{ flex-wrap: wrap; gap: 4px 12px; }
+    .case .case-meta .k{ min-width: 0; }
+
+    /* Performance bars: narrower name column on phones */
+    .ph-bar-row{ grid-template-columns: 96px 1fr 52px; gap: 10px; }
+    .ph-bar-name{ font-size: 9.5px; }
+    .ph-bar-val{ font-size: 9.5px; }
+
+    /* Pipeline phones rotation clipping */
+    .pipe-phones{ overflow: hidden; padding: 24px 0 22px; }
+
+    /* Edu card padding so chips don't push beyond viewport */
+    .edu-card{ padding: 26px 22px; }
+    .edu-head .dates{ font-size: 10px; padding: 6px 10px; }
+
+    /* Collab logo grid: 3 per row instead of 4 on phones */
+    .collab-list.logos .logo{ width: calc((100% - 16px) / 3); }
+  }
+
+  @media (max-width: 480px){
+    :root{ --pad: 16px; }
+
+    /* Stat strip: 2 + 1 (last spans both) so big numbers don't crush */
+    .dn-stat-strip{ grid-template-columns: 1fr 1fr; }
+    .dn-stat-strip .ni:last-child{ grid-column: 1 / -1; }
+    .dn-stat-strip .ni .num{ font-size: clamp(24px, 8vw, 32px); }
+
+    /* Artwork grid down to 1 column at very narrow widths */
+    .art-grid{ grid-template-columns: 1fr 1fr; }
+
+    /* IX campaign chips wrap below heading */
+    .ix-camp-head{ grid-template-columns: 1fr; }
+    .ix-camp-chips{ grid-column: auto; justify-content: flex-start; }
+
+    /* Quick card a touch tighter */
+    .quick-card{ padding: 24px 22px 10px; }
+  }
 </style>
 </head>
 <body>
