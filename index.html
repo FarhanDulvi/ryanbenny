@@ -1,0 +1,2129 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Ryan Benny — Portfolio</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Allura&display=swap" rel="stylesheet" />
+<style>
+  *,*::before,*::after{ box-sizing:border-box; }
+  :root{
+    --bg:#0A0A0A;
+    --bg-2:#0E0E0E;
+    --surface:#141414;
+    --surface-2:#181818;
+    --border:#222;
+    --border-2:#2c2c2c;
+    --fg:#FAFAFA;
+    --fg-2:#A8A8A8;
+    --fg-3:#6E6E6E;
+    --fg-4:#3a3a3a;
+    --pink:#FF3D7F;
+    --orange:#FF7A45;
+    --purple:#9D4EDD;
+    --grad: linear-gradient(95deg,#FF7A45 0%,#FF3D7F 50%,#9D4EDD 100%);
+    --pad: clamp(22px, 3.4vw, 64px);
+  }
+  html,body{ margin:0; padding:0; background:var(--bg); color:var(--fg);
+    font-family:'Inter',sans-serif; font-weight:300; -webkit-font-smoothing:antialiased;
+    line-height:1.5; overflow-x:hidden;
+  }
+  a{ color:inherit; }
+  img{ display:block; max-width:100%; }
+
+  .grad-text{ background:var(--grad); -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent; }
+  .ital{ font-family:'Instrument Serif',serif; font-style:italic; font-weight:400; letter-spacing:-.01em; }
+  .ital.grad{ background:var(--grad); -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent; }
+  .mono{ font-family:'JetBrains Mono',monospace; }
+  .eyebrow{
+    font-family:'Inter',sans-serif; font-weight:600; font-size:12px;
+    letter-spacing:.28em; text-transform:uppercase; color:var(--fg-2);
+    display:inline-flex; align-items:center; gap:14px;
+  }
+  .eyebrow::before{ content:""; width:32px; height:1px; background:var(--grad); display:inline-block;}
+  .eyebrow.center::before{ display:none; }
+  .eyebrow.center{ display:inline-flex; align-items:center; gap:14px;}
+  .eyebrow.center .gline{ width:32px;height:1px;background:var(--grad); }
+
+  /* ============ NAV ============ */
+  nav.top{
+    position:fixed; top:0; left:0; right:0; z-index:50;
+    padding:18px var(--pad);
+    display:flex; align-items:center; justify-content:space-between;
+    background: linear-gradient(180deg, rgba(10,10,10,.85), rgba(10,10,10,.55) 70%, transparent);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(255,255,255,.04);
+  }
+  .rb-mark{
+    font-family:'Instrument Serif',serif; font-style:italic; font-weight:400;
+    font-size:24px; letter-spacing:-.01em; line-height:1;
+    display:inline-flex; align-items:baseline; gap:2px;
+  }
+  .rb-mark .g{ background:var(--grad); -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+  .rb-mark .dot{ width:7px; height:7px; border-radius:999px; background:#FF3D7F; display:inline-block; margin-left:4px; transform:translateY(-2px);}
+  nav.top .links{ display:flex; gap:30px; }
+  nav.top .links a{
+    text-decoration:none; font-size:13px; font-weight:500; color:var(--fg-2);
+    letter-spacing:.02em; transition:color .2s;
+  }
+  nav.top .links a:hover{ color:var(--fg); }
+  nav.top .meta{ font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--fg-3); letter-spacing:.18em;}
+  nav.top .nav-cta{
+    text-decoration:none; padding:8px 14px; border-radius:999px;
+    border:1px solid var(--border-2); background:rgba(255,255,255,.02);
+    font-family:'Inter',sans-serif; font-size:12px; font-weight:500; letter-spacing:.04em;
+    color:var(--fg); transition: border-color .2s, background .2s; cursor:pointer;
+  }
+  nav.top .nav-cta:hover{ border-color:#FF3D7F; background:rgba(255,61,127,.08);}
+  @media (max-width: 880px){ nav.top .links{ display:none; } }
+
+  /* ============ HERO ============ */
+  .hero{
+    position:relative; padding: 84px var(--pad) 40px;
+    overflow:hidden;
+  }
+  .hero .glow-a{
+    position:absolute; top:-280px; right:-200px; width:900px; height:900px;
+    background: radial-gradient(circle, rgba(255,61,127,.26), rgba(157,78,221,.14) 38%, transparent 62%);
+    filter: blur(60px); pointer-events:none; z-index:0;
+  }
+  .hero .glow-b{
+    position:absolute; bottom:-360px; left:-220px; width:1000px; height:1000px;
+    background: radial-gradient(circle, rgba(255,122,69,.20), rgba(255,61,127,.08) 40%, transparent 65%);
+    filter: blur(60px); pointer-events:none; z-index:0;
+  }
+  .hero > *{ position:relative; z-index:1; }
+  .hero-grid{
+    display:grid; grid-template-columns: 1.45fr .85fr; gap:56px; align-items:center;
+  }
+  @media (max-width: 980px){ .hero-grid{ grid-template-columns: 1fr; gap:40px; } }
+
+  .hero h1{
+    font-family:'Inter',sans-serif; font-weight:800;
+    font-size: clamp(48px, 7vw, 100px); line-height:.94; letter-spacing:-.045em;
+    margin:14px 0 0; white-space: nowrap;
+  }
+  .hero h1 .last{ font-family:'Instrument Serif', serif; font-style:italic; font-weight:400;
+    letter-spacing:-.02em;
+    background:var(--grad); -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent; }
+  .hero .role{
+    margin-top:18px; color:var(--fg);
+    font-size: clamp(17px, 1.35vw, 21px); line-height:1.55; font-weight:400; max-width:560px;
+  }
+  .hero .role span.thin{ color:var(--fg-2); font-weight:300;}
+  .hero .sub{
+    margin-top:14px; color:var(--fg-2);
+    font-size: 15.5px; line-height:1.65; max-width:560px; font-weight:300;
+  }
+
+  .hero-portrait{
+    position:relative; aspect-ratio: 4/5; border-radius:8px; overflow:hidden;
+    border:1px solid var(--border-2);
+    background:#000;
+    box-shadow: 0 30px 80px -30px rgba(0,0,0,.7), 0 0 0 1px rgba(255,61,127,.08);
+  }
+  .hero-portrait::before{
+    content:""; position:absolute; inset:0; border-radius:8px;
+    background:var(--grad); padding:1px;
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor; mask-composite: exclude; opacity:.35; pointer-events:none; z-index:3;
+  }
+  .hero-portrait img{ width:100%; height:100%; object-fit:cover; object-position: center 18%;}
+  .hero-portrait .tag{
+    position:absolute; left:14px; bottom:14px; z-index:4;
+    font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.22em; text-transform:uppercase;
+    background:rgba(10,10,10,.7); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    padding:7px 11px; border-radius:3px; color:#fff;
+    display:inline-flex; align-items:center; gap:8px;
+  }
+  .hero-portrait .tag .dot{ width:6px; height:6px; border-radius:999px; background:#FF3D7F;}
+
+  .hero .strip{
+    display:grid; grid-template-columns: repeat(4, 1fr); gap:24px;
+    padding-top:24px; border-top: 1px solid var(--border);
+    margin-top:36px;
+  }
+  .hero .strip .item .lab{ font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.24em; color:var(--fg-3); text-transform:uppercase;}
+  .hero .strip .item .val{ font-weight:500; font-size:15px; margin-top:6px; letter-spacing:-.005em;}
+  .hero .strip .item .val.big{ font-family:'Instrument Serif',serif; font-style:italic; font-size:28px; font-weight:400; letter-spacing:-.02em;
+    background:var(--grad); -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent; }
+  @media (max-width: 880px){ .hero .strip{ grid-template-columns: repeat(2, 1fr); gap:18px;} }
+
+  /* ============ SECTION SHELL ============ */
+  section.block{ padding: 56px var(--pad) 60px; position:relative; }
+  section.block + section.block,
+  section.case + section.block,
+  section.block + section.case{ border-top: 1px solid var(--border); }
+  .section-head{
+    display:grid; grid-template-columns: 1.3fr 1fr; gap:48px;
+    align-items:end; margin-bottom:32px;
+  }
+  .section-head h2{
+    font-family:'Inter',sans-serif; font-weight:800;
+    font-size: clamp(32px, 4.2vw, 60px); line-height:1.02; letter-spacing:-.04em;
+    margin: 12px 0 0;
+  }
+  .section-head h2 .ital{ font-family:'Instrument Serif',serif; font-style:italic; font-weight:400;
+    background:var(--grad); -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent; letter-spacing:-.01em;}
+  .section-head .lede{ color:var(--fg-2); font-size:16px; line-height:1.65; font-weight:300; max-width:460px;}
+  .section-head .lede b{ color:var(--fg); font-weight:600;}
+  @media (max-width: 880px){ .section-head{ grid-template-columns: 1fr; gap:24px;} }
+
+  .section-no{
+    position:absolute; top:32px; left:var(--pad);
+    font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.28em;
+    color:var(--fg-3);
+  }
+  .section-no b{ color:var(--fg); font-weight:500; }
+
+  /* ============ ABOUT ============ */
+  .about-grid{
+    display:grid; grid-template-columns: 1.5fr 1fr; gap:56px; align-items:start;
+  }
+  .about-grid .bio p{ color:var(--fg-2); font-size:17px; line-height:1.75; max-width:640px; font-weight:300; margin:0;}
+  .about-grid .bio p + p{ margin-top:20px;}
+  .about-grid .bio p b{ color:var(--fg); font-weight:600; }
+  .about-grid .bio .signature{
+    margin-top:24px; display:inline-flex; align-items:center; gap:14px;
+    font-family:'Instrument Serif',serif; font-style:italic; font-size:24px;
+    letter-spacing:-.01em;
+  }
+  .about-grid .bio .signature::before{ content:""; width:42px; height:1px; background:var(--grad);}
+  .quick-card{
+    border:1px solid var(--border); border-radius:6px; background:var(--surface);
+    padding:30px 30px 14px; position:relative; overflow:hidden;
+  }
+  .quick-card::before{ content:""; position:absolute; top:0; left:0; right:0; height:2px; background:var(--grad);}
+  .quick-card .gh{
+    font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.28em;
+    color:var(--fg-3); text-transform:uppercase;
+  }
+  .quick-card h3{ font-family:'Inter',sans-serif; font-weight:700; font-size:20px;
+    letter-spacing:-.02em; margin:6px 0 22px;}
+  .quick-card .row{
+    display:flex; justify-content:space-between; align-items:baseline;
+    padding:14px 0; border-top:1px solid var(--border);
+    font-size:14px;
+  }
+  .quick-card .row .k{ font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.2em;
+    text-transform:uppercase; color:var(--fg-3);}
+  .quick-card .row .v{ font-weight:500; color:var(--fg);}
+  @media (max-width: 880px){ .about-grid{ grid-template-columns: 1fr;} }
+
+  /* ============ EDUCATION ============ */
+  .edu-card{
+    position:relative; border:1px solid var(--border); border-radius:10px;
+    background:linear-gradient(160deg, rgba(255,255,255,.02), rgba(255,255,255,0) 60%), var(--surface);
+    padding: 36px 40px; overflow:hidden;
+  }
+  .edu-card::before{ content:""; position:absolute; top:0; left:0; right:0; height:2px; background:var(--grad);}
+  .edu-head{
+    display:grid; grid-template-columns: 1fr auto; gap:32px; align-items:start;
+    padding-bottom:24px; border-bottom:1px solid var(--border);
+  }
+  .edu-head .school-tag{
+    font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.26em;
+    text-transform:uppercase; color:var(--fg-3); margin-bottom:10px;
+  }
+  .edu-head h3{
+    font-family:'Inter',sans-serif; font-weight:700; font-size:clamp(22px, 2.2vw, 28px);
+    letter-spacing:-.025em; line-height:1.18; margin:0;
+  }
+  .edu-head .deg{ margin-top:10px; color:var(--fg-2); font-size:15px; line-height:1.5; font-weight:300;}
+  .edu-head .deg b{ color:var(--fg); font-weight:600;}
+  .edu-head .dates{
+    font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.18em;
+    text-transform:uppercase; padding:8px 12px; border:1px solid rgba(255,61,127,.32);
+    border-radius:999px; color:#fff; white-space:nowrap;
+    background:linear-gradient(95deg, rgba(255,122,69,.10), rgba(255,61,127,.12), rgba(157,78,221,.10));
+  }
+  .edu-focus{
+    display:flex; flex-wrap:wrap; align-items:center; gap:10px 8px;
+    padding:20px 0 22px; border-bottom:1px solid var(--border);
+  }
+  .edu-focus .lab{
+    font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.24em;
+    text-transform:uppercase; color:var(--fg-3); margin-right:6px;
+  }
+  .chip{
+    font-family:'Inter',sans-serif; font-size:12.5px; font-weight:500; letter-spacing:-.005em;
+    padding:6px 12px; border:1px solid var(--border-2); border-radius:999px;
+    background:rgba(255,255,255,.015); color:var(--fg);
+  }
+  .edu-cols{ display:grid; grid-template-columns: 1fr 1fr; gap:40px; padding:24px 0 6px;}
+  @media (max-width: 820px){ .edu-cols{ grid-template-columns: 1fr; gap:28px;} .edu-head{ grid-template-columns:1fr; gap:18px;} }
+  .edu-col .col-head{
+    display:flex; align-items:center; gap:10px;
+    font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.28em;
+    text-transform:uppercase; margin-bottom:16px;
+  }
+  .edu-col .col-head .gline{ width:22px; height:1px; background:var(--grad);}
+  .edu-col .col-head span{ background:var(--grad); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; font-weight:600;}
+  .edu-list{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px;}
+  .edu-list li{
+    color:var(--fg-2); font-size:14.5px; line-height:1.5; font-weight:300;
+    padding-left:18px; position:relative;
+  }
+  .edu-list li::before{
+    content:""; position:absolute; left:0; top:9px;
+    width:6px; height:6px; border-radius:999px; background:var(--grad);
+  }
+  .edu-list li b{ color:var(--fg); font-weight:600;}
+  .edu-list.awards li::before{ background:#FF3D7F; box-shadow:0 0 8px rgba(255,61,127,.6);}
+  .edu-list a{ color:var(--fg-3); text-decoration:none; border-bottom:1px dashed var(--fg-4); font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.04em; padding-bottom:1px;}
+  .edu-list a:hover{ color:var(--fg);}
+  .edu-events{
+    margin-top:18px; padding:20px 24px; border-radius:6px;
+    background:rgba(255,255,255,.02); border:1px solid var(--border);
+    display:grid; grid-template-columns: 160px 1fr; gap:24px; align-items:start;
+  }
+  @media (max-width: 820px){ .edu-events{ grid-template-columns:1fr; gap:14px;} }
+  .edu-events .lab{
+    font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.28em;
+    text-transform:uppercase; color:var(--fg-3); padding-top:3px;
+  }
+  .edu-events p{ color:var(--fg-2); font-size:14.5px; line-height:1.65; font-weight:300; margin:0;}
+  .edu-events p b{ color:var(--fg); font-weight:600;}
+
+  /* ============ NETWORK COMPACT ============ */
+  .dn-grid{
+    display:grid; grid-template-columns: 1.4fr 1fr; gap:48px; align-items:start;
+  }
+  @media (max-width: 980px){ .dn-grid{ grid-template-columns: 1fr; } }
+  .dn-copy p{ color:var(--fg-2); font-size:16px; line-height:1.75; font-weight:300; margin:0; max-width:600px;}
+  .dn-copy p + p{ margin-top:16px;}
+  .dn-copy p b{ color:var(--fg); font-weight:600;}
+  .dn-stat-strip{
+    display:grid; grid-template-columns: repeat(3, 1fr); gap:1px; background:var(--border);
+    margin-top:28px; border:1px solid var(--border); border-radius:6px; overflow:hidden;
+  }
+  .dn-stat-strip .ni{ background:var(--bg); padding:24px 22px; display:flex; flex-direction:column; gap:6px;}
+  .dn-stat-strip .ni .lab{ font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.22em; text-transform:uppercase; color:var(--fg-3);}
+  .dn-stat-strip .ni .num{ font-weight:800; font-size:34px; letter-spacing:-.04em; line-height:1;
+    background:var(--grad); -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+
+  .net-grid{
+    display:grid; grid-template-columns: repeat(2, 1fr); gap:12px;
+  }
+  .brand-card{
+    position:relative; background:var(--surface); border:1px solid var(--border);
+    border-radius:6px; padding:18px 18px 16px; display:flex; align-items:center; gap:14px;
+    transition: border-color .25s, transform .25s;
+  }
+  .brand-card:hover{ border-color: var(--border-2); transform: translateY(-2px);}
+  .brand-card .avatar{
+    width:46px; height:46px; border-radius:999px; background:#000;
+    border:1px solid var(--border-2); overflow:hidden; position:relative; flex-shrink:0;
+    display:grid; place-items:center;
+  }
+  .brand-card .avatar img{
+    width:100%; height:100%; object-fit:cover; display:block;
+  }
+  .brand-card .meta{ flex:1; min-width:0;}
+  .brand-card .name{ font-weight:700; font-size:15px; letter-spacing:-.02em;}
+  .brand-card .handle{ color:var(--fg-3); font-size:11px; font-family:'JetBrains Mono',monospace; margin-top:2px; letter-spacing:.02em;}
+  .brand-card .foll{ font-weight:700; font-size:18px; letter-spacing:-.02em; flex-shrink:0;}
+  .brand-card.flagship{
+    background:linear-gradient(160deg, rgba(255,61,127,.10), rgba(157,78,221,.06) 70%, var(--surface) 100%);
+    border-color:rgba(255,61,127,.3);
+  }
+  .brand-card.flagship .foll{ background:var(--grad); -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+
+  /* ============ CASE STUDIES ============ */
+  .case{ padding: 64px var(--pad); position:relative; border-top:1px solid var(--border);}
+  .case .case-head{
+    display:grid; grid-template-columns: 1fr 1fr; gap:48px;
+    margin-bottom:36px; align-items:end;
+  }
+  .case .case-tag{
+    display:inline-flex; align-items:center; gap:10px;
+    padding:6px 12px; border-radius:999px;
+    background:linear-gradient(95deg, rgba(255,122,69,.16), rgba(255,61,127,.18) 50%, rgba(157,78,221,.16));
+    border:1px solid rgba(255,61,127,.35);
+    font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.24em;
+    text-transform:uppercase; color:#fff;
+  }
+  .case .case-tag::before{ content:""; width:6px;height:6px;border-radius:999px;background:#FF3D7F;
+    box-shadow:0 0 10px #FF3D7F;}
+  .case h2.case-title{
+    font-family:'Inter',sans-serif; font-weight:800;
+    font-size: clamp(38px, 5.4vw, 80px); line-height:.98; letter-spacing:-.04em;
+    margin: 22px 0 0;
+  }
+  .case h2.case-title .ital{ font-family:'Instrument Serif',serif; font-style:italic; font-weight:400; letter-spacing:-.01em;
+    background:var(--grad); -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+  .case .case-meta{
+    font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.16em;
+    color:var(--fg-2); text-transform:uppercase; margin-bottom:0;
+    display:flex; flex-direction:column; gap:10px; align-items:flex-start;
+  }
+  .case .case-meta .row{ display:flex; gap:14px; align-items:center;}
+  .case .case-meta .k{ color:var(--fg-3); min-width:90px;}
+  @media (max-width: 980px){ .case .case-head{ grid-template-columns:1fr; gap:24px;} }
+
+  .case-body{
+    display:grid; grid-template-columns: 1.05fr 1fr; gap:64px; align-items:start;
+  }
+  @media (max-width: 980px){ .case-body{ grid-template-columns:1fr; gap:36px;} }
+  .case-body.reverse{ grid-template-columns: 1fr 1.05fr;}
+  @media (max-width: 980px){ .case-body.reverse{ grid-template-columns:1fr;} }
+
+  .case-text .block{ margin-bottom:30px;}
+  .case-text .lab{
+    display:flex; align-items:center; gap:12px;
+    font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.28em;
+    text-transform:uppercase; margin-bottom:10px;
+  }
+  .case-text .lab span{ background:var(--grad); -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent; font-weight:600;}
+  .case-text .lab .gline{ width:22px; height:1px; background:var(--grad);}
+  .case-text p{ color:var(--fg-2); font-size:16px; line-height:1.7; font-weight:300; margin:0; max-width:580px;}
+  .case-text p b{ color:var(--fg); font-weight:600;}
+
+  .case-results{
+    margin-top:20px; padding: 26px 30px;
+    border-radius:8px; border:1px solid rgba(255,61,127,.32);
+    background: linear-gradient(135deg, rgba(255,122,69,.07), rgba(157,78,221,.07));
+    display:grid; gap:22px;
+  }
+  .case-results.three{ grid-template-columns: repeat(3, 1fr);}
+  .case-results.four{ grid-template-columns: repeat(4, 1fr);}
+  @media (max-width: 700px){ .case-results.three, .case-results.four{ grid-template-columns: repeat(2,1fr);} }
+  .case-results .ri .num{
+    font-weight:800; font-size: clamp(24px, 2.6vw, 36px); letter-spacing:-.035em; line-height:1;
+    background:var(--grad); -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  }
+  .case-results .ri .num.serif{
+    font-family:'Instrument Serif',serif; font-style:italic; font-weight:400; font-size:26px; letter-spacing:-.01em;
+  }
+  .case-results .ri .lab{ margin-top:6px; color:var(--fg-2); font-size:12px; line-height:1.45;}
+
+  .case-pull{
+    margin-top:24px; padding: 12px 20px; border-left: 2px solid #FF3D7F;
+    font-family:'Instrument Serif',serif; font-style:italic; font-size:20px; line-height:1.4;
+    color:var(--fg); max-width:580px;
+  }
+
+  /* ---- VS CATEGORY (inline comparison row) ---- */
+  .vs-row{
+    margin-top:18px; display:grid; grid-template-columns: repeat(2, 1fr); gap:1px;
+    background:var(--border); border:1px solid var(--border); border-radius:8px; overflow:hidden;
+  }
+  .vs-row .vi{ background:var(--bg); padding:18px 20px; display:flex; flex-direction:column; gap:8px;}
+  .vs-row .vi .head{
+    display:flex; align-items:baseline; gap:10px;
+  }
+  .vs-row .vi .mult{
+    font-weight:800; font-size:32px; letter-spacing:-.04em; line-height:1;
+    background:var(--grad); -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  }
+  .vs-row .vi .vlab{
+    font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.22em;
+    text-transform:uppercase; color:var(--fg-3);
+  }
+  .vs-row .vi .vdesc{ color:var(--fg-2); font-size:13px; line-height:1.5; font-weight:300;}
+  .vs-row .vi .vdesc b{ color:var(--fg); font-weight:600;}
+  @media (max-width: 700px){ .vs-row{ grid-template-columns:1fr;} }
+
+  /* ---- COLLABORATIONS (side column variant) ---- */
+  .collab-block{
+    border:1px solid var(--border); border-radius:8px;
+    padding:18px 18px; background:var(--surface);
+    position:relative; overflow:hidden;
+  }
+  .collab-block::before{ content:""; position:absolute; top:0; left:0; right:0; height:1px; background:var(--grad); opacity:.6;}
+  .collab-block .cb-head{
+    display:flex; align-items:center; gap:12px; margin-bottom:14px;
+    font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.26em;
+    text-transform:uppercase;
+  }
+  .collab-block .cb-head .gline{ width:18px; height:1px; background:var(--grad);}
+  .collab-block .cb-head span{ background:var(--grad); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; font-weight:600;}
+  .collab-list{ display:flex; flex-wrap:wrap; gap:6px;}
+  .collab-list.logos{ display:flex; flex-wrap:wrap; gap:8px; justify-content:center;}
+  .collab-list.logos .logo{ width: calc((100% - 24px) / 4);
+    aspect-ratio: 1 / 1; background:#000;
+    border:1px solid var(--border-2); border-radius:6px;
+    display:flex; align-items:center; justify-content:center; text-align:center;
+    font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:.1em;
+    color:var(--fg-2); text-transform:uppercase; padding:8px; line-height:1.25;
+    position:relative; overflow:hidden;
+  }
+  .collab-list.logos .logo.has-img{ background:#fff; padding:0; border-color:var(--border);}
+  .collab-list.logos .logo.has-img.dark{ background:#000;}
+  .collab-list.logos .logo.has-img.dark img{ padding:0; object-fit:cover;}
+  .collab-list.logos .logo img{ width:100%; height:100%; object-fit:contain; display:block; padding:6px;}
+  .collab-list.logos .logo:not(.has-img)::after{
+    content:""; position:absolute; inset:0; pointer-events:none;
+    background: radial-gradient(circle at 30% 20%, rgba(255,255,255,.04), transparent 60%);
+  }
+  .collab-list .ci{
+    border:1px solid var(--border-2); border-radius:999px; background:rgba(255,255,255,.02);
+    padding:10px 16px 10px 26px;
+    display:inline-flex; align-items:center;
+    color:var(--fg); font-family:'Inter',sans-serif; font-size:15px; letter-spacing:-.01em;
+    font-weight:500; line-height:1.1; white-space:nowrap;
+    position:relative;
+  }
+  .collab-list .ci::before{
+    content:""; position:absolute; left:12px; top:50%; width:5px; height:5px; border-radius:999px;
+    background:var(--grad); transform:translateY(-50%); opacity:.95;
+  }
+
+  /* ---- PROOF (image vignettes) ---- */
+  .proof-set{ display:flex; flex-direction:column; gap:14px;}
+  .proof-row{ display:grid; grid-template-columns: 1fr 1fr; gap:12px;}
+  @media (max-width: 700px){ .proof-row{ grid-template-columns: 1fr;} }
+  .proof{
+    position:relative;
+    border:1px solid var(--border-2); border-radius:12px; overflow:hidden;
+    background:#000;
+  }
+  .proof::before{ content:""; position:absolute; inset:0; border-radius:12px;
+    background:var(--grad); padding:1px;
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor; mask-composite: exclude; opacity:.3; pointer-events:none; z-index:2;}
+  .proof img{ width:100%; height:auto; display:block;}
+  .proof .plab{
+    position:absolute; top:12px; left:14px; z-index:3;
+    font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.22em;
+    text-transform:uppercase; color:#fff;
+    background:rgba(10,10,10,.72); padding:6px 10px; border-radius:3px;
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    display:flex; align-items:center; gap:8px;
+  }
+  .proof .plab .dot{ width:6px;height:6px;border-radius:999px;background:#FF3D7F;}
+  .proof.feed{ aspect-ratio: 1 / 1.55; background:#0a0907; }
+  .proof.feed img{ width:100%; height:100%; object-fit:cover; object-position:center top;}
+
+  /* ============ ARTWORK SECTION ============ */
+  .art-hero{
+    display:grid; grid-template-columns: 1.15fr 1fr; gap:48px; align-items:center;
+    margin-bottom: 28px;
+  }
+  @media (max-width: 980px){ .art-hero{ grid-template-columns:1fr; gap:32px;} }
+  .art-text p{ color:var(--fg-2); font-size:17px; line-height:1.75; max-width:580px; font-weight:300; margin:0 0 18px;}
+  .art-text p:last-child{ margin-bottom:0;}
+  .art-text p b{ color:var(--fg); font-weight:600;}
+  .art-feature{
+    position:relative; aspect-ratio: 4/3; border-radius:8px; overflow:hidden;
+    border:1px solid var(--border-2); background:#000;
+  }
+  .art-feature img{ width:100%; height:100%; object-fit:cover; display:block;}
+  .art-feature::before{
+    content:""; position:absolute; inset:0; pointer-events:none; z-index:2;
+    background: linear-gradient(180deg, transparent 55%, rgba(0,0,0,.45));
+  }
+  .art-feature .ftag{
+    position:absolute; bottom:14px; left:16px; z-index:3;
+    font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.24em;
+    text-transform:uppercase; color:#fff; opacity:.86;
+    display:flex; align-items:center; gap:8px;
+  }
+  .art-feature .ftag .dot{ width:6px; height:6px; border-radius:999px; background:#FF3D7F;}
+
+  .yt-bar{
+    display:flex; align-items:center; gap:18px;
+    padding:18px 22px; border:1px solid var(--border-2); border-radius:10px;
+    background:var(--surface); text-decoration:none; color:var(--fg);
+    margin: 0 0 28px; transition: border-color .25s, transform .25s;
+    position:relative; overflow:hidden;
+  }
+  .yt-bar::before{ content:""; position:absolute; top:0; left:0; right:0; height:1px; background:var(--grad); opacity:.5;}
+  .yt-bar:hover{ border-color: rgba(255,255,255,.16); transform: translateY(-1px);}
+  .yt-bar .yt-mark{ width:54px; height:38px; flex-shrink:0;}
+  .yt-bar .yt-mark svg{ width:100%; height:100%; display:block;}
+  .yt-bar .yt-meta{ flex:1; min-width:0;}
+  .yt-bar .yt-name{
+    font-family:'Instrument Serif',serif; font-style:italic; font-size:26px; letter-spacing:-.01em;
+    line-height:1; margin-bottom:6px;
+  }
+  .yt-bar .yt-sub{
+    font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:.2em;
+    text-transform:uppercase; color:var(--fg-3);
+  }
+  .yt-bar .yt-cta{
+    font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:.22em;
+    text-transform:uppercase; color:var(--fg);
+    padding: 10px 18px; border:1px solid var(--border-2); border-radius:999px;
+    white-space:nowrap;
+  }
+  @media (max-width: 700px){ .yt-bar .yt-cta{ display:none;} .yt-bar .yt-name{ font-size:22px;} }
+
+  .art-grid{
+    display:grid; grid-template-columns: repeat(3, 1fr); gap:12px;
+  }
+  @media (max-width: 820px){ .art-grid{ grid-template-columns: repeat(2, 1fr);} }
+  .art-tile{
+    position:relative; aspect-ratio: 4/3; overflow:hidden;
+    border:1px solid var(--border-2); border-radius:8px;
+    background:#000;
+  }
+  .art-tile img{ width:100%; height:100%; object-fit:cover; display:block; transition: transform .5s;}
+  .art-tile:hover img{ transform: scale(1.03);}
+
+  /* ============ ACHIEVEMENTS ============ */
+  .ach-grid{
+    display:grid; grid-template-columns: repeat(2, 1fr); gap:16px;
+  }
+  @media (max-width: 820px){ .ach-grid{ grid-template-columns: 1fr; } }
+  .ach{
+    border:1px solid var(--border); border-radius:6px; background:var(--surface);
+    padding: 22px 24px; position:relative; overflow:hidden;
+    display:grid; grid-template-columns: 52px 1fr; gap:18px; align-items:start;
+  }
+  .ach .n{
+    font-family:'Instrument Serif',serif; font-style:italic; font-size:44px; line-height:1;
+    background:var(--grad); -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+    letter-spacing:-.02em;
+  }
+  .ach .name{ font-weight:700; font-size:17px; letter-spacing:-.02em; line-height:1.25;}
+  .ach .desc{ color:var(--fg-2); font-size:13.5px; margin-top:8px; line-height:1.6;}
+  .ach .ctx{
+    margin-top:14px; display:inline-block;
+    font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.22em;
+    text-transform:uppercase; color:var(--fg-3);
+    padding:5px 9px; border:1px solid var(--border-2); border-radius:3px;
+  }
+
+  /* ============ NUMBERS STRIP (achievements) ============ */
+  .num-strip{
+    display:grid; grid-template-columns: repeat(4, 1fr);
+    border-top:1px solid var(--border); border-bottom:1px solid var(--border);
+    margin-top:32px;
+  }
+  .num-strip .ni{
+    padding: 24px 22px; border-right: 1px solid var(--border);
+    display:flex; flex-direction:column; gap:6px;
+  }
+  .num-strip .ni:last-child{ border-right:none; }
+  .num-strip .ni .lab{ font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.24em;
+    text-transform:uppercase; color:var(--fg-3);}
+  .num-strip .ni .num{ font-weight:800; font-size: clamp(30px, 3.4vw, 48px); letter-spacing:-.04em; line-height:1;
+    background:var(--grad); -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+  .num-strip .ni .desc{ color:var(--fg-2); font-size:12.5px; line-height:1.5; max-width:200px;}
+  @media (max-width: 980px){ .num-strip{ grid-template-columns: repeat(2, 1fr);} .num-strip .ni:nth-child(2){ border-right:none;}}
+  @media (max-width: 540px){ .num-strip{ grid-template-columns: 1fr;} .num-strip .ni{ border-right:none; border-bottom:1px solid var(--border);} .num-strip .ni:last-child{ border-bottom:none;}}
+
+  /* ============ CONTACT ============ */
+  .contact{
+    position:relative; padding: 84px var(--pad) 64px; overflow:hidden;
+    text-align:center; border-top: 1px solid var(--border);
+  }
+  .contact .glow{
+    position:absolute; top:-300px; left:50%; transform:translateX(-50%);
+    width:1100px; height:1000px;
+    background: radial-gradient(circle, rgba(255,61,127,.22), rgba(157,78,221,.10) 40%, transparent 65%);
+    filter:blur(60px); pointer-events:none; z-index:0;
+  }
+  .contact > *{ position:relative; z-index:1; }
+  .contact .closing{
+    font-family:'Instrument Serif',serif; font-style:italic; font-size:clamp(20px, 2vw, 26px);
+    color:var(--fg-2); max-width:680px; margin: 20px auto 0; line-height:1.45;
+  }
+  .contact h2{
+    font-family:'Inter',sans-serif; font-weight:800;
+    font-size: clamp(40px, 6.2vw, 92px); line-height:.96; letter-spacing:-.045em;
+    margin: 18px auto 0; max-width:1100px;
+  }
+  .contact h2 .ital{ font-family:'Instrument Serif',serif; font-style:italic; font-weight:400; letter-spacing:-.02em;
+    background:var(--grad); -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+  .contact .cta{
+    display:inline-flex; align-items:center; gap:14px; margin-top:36px;
+    padding: 20px 34px; border-radius: 999px;
+    background:var(--grad); color:#0A0A0A; font-weight:700;
+    text-decoration:none; font-size:15px; letter-spacing:-.01em;
+    transition: transform .25s, box-shadow .25s;
+    box-shadow: 0 24px 60px -20px rgba(255,61,127,.5);
+  }
+  .contact .cta:hover{ transform: translateY(-2px); box-shadow: 0 30px 70px -20px rgba(255,61,127,.65);}
+  .contact .cta svg{ width:18px; height:18px;}
+  .contact .three{
+    margin: 48px auto 0; display:grid; grid-template-columns: repeat(3,1fr);
+    max-width:980px; border-top:1px solid var(--border); border-bottom:1px solid var(--border);
+  }
+  .contact .three .col{
+    padding:22px 20px; border-right:1px solid var(--border);
+  }
+  .contact .three .col:last-child{ border-right:none;}
+  .contact .three .col .lab{ font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.26em; text-transform:uppercase; color:var(--fg-3); margin-bottom:10px;}
+  .contact .three .col .val{ font-weight:500; font-size:16px; letter-spacing:-.01em;}
+  @media (max-width: 820px){ .contact .three{ grid-template-columns: 1fr;} .contact .three .col{ border-right:none; border-bottom:1px solid var(--border);} .contact .three .col:last-child{ border-bottom:none;}}
+
+  /* ============ FOOTER ============ */
+  footer.site{
+    padding: 24px var(--pad); border-top:1px solid var(--border);
+    display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap;
+    font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.22em; color:var(--fg-3); text-transform:uppercase;
+  }
+  footer.site .rb-mark{ font-size:20px; }
+
+  /* ============ INDUSTRY EXPERIENCE ============ */
+  .ix-feature{
+    display:grid; grid-template-columns: 1.2fr 1fr; gap:24px;
+    align-items:start; margin-top:8px;
+  }
+  .ix-feature > *{ min-width: 0; }
+  @media (max-width: 1080px){ .ix-feature{ grid-template-columns: 1fr; } }
+  .ix-hero{
+    position:relative; margin:0; border-radius:10px; overflow:hidden;
+    border:1px solid var(--border-2);
+    background:#000; width:100%; aspect-ratio: 5/4;
+    box-shadow: 0 30px 80px -30px rgba(0,0,0,.7);
+  }
+  .ix-hero::before{
+    content:""; position:absolute; inset:0; border-radius:10px;
+    background:var(--grad); padding:1px;
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor; mask-composite: exclude; opacity:.32; pointer-events:none; z-index:3;
+  }
+  .ix-hero img{ width:100%; height:100%; object-fit:cover; object-position: 50% 30%; }
+  .ix-hero figcaption{
+    position:absolute; left:0; right:0; bottom:0; z-index:2;
+    padding: 64px 28px 24px;
+    background: linear-gradient(180deg, transparent, rgba(10,10,10,.85) 60%, rgba(10,10,10,.94));
+    display:flex; flex-direction:column; gap:8px; color:#fff;
+  }
+  .ix-tag{
+    align-self:flex-start;
+    font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.22em; text-transform:uppercase;
+    background:rgba(10,10,10,.7); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    padding:7px 11px; border-radius:3px; border:1px solid rgba(255,255,255,.08);
+    display:inline-flex; align-items:center; gap:8px;
+  }
+  .ix-tag .dot{ width:6px; height:6px; border-radius:999px; background:#FF3D7F;}
+  .ix-cap-title{
+    font-family:'Inter',sans-serif; font-weight:800; font-size: clamp(22px, 2.4vw, 32px);
+    letter-spacing:-.025em; line-height:1.05; margin-top:6px;
+  }
+  .ix-cap-title .ital{
+    font-family:'Instrument Serif',serif; font-style:italic; font-weight:400; letter-spacing:-.01em;
+    background:var(--grad); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+  }
+  .ix-cap-sub{ color:var(--fg-2); font-size:14px; line-height:1.55; max-width:560px; font-weight:300;}
+
+  .ix-body{
+    border:1px solid var(--border); border-radius:10px; background:var(--surface);
+    padding: 26px 26px; display:flex; flex-direction:column; gap:14px;
+    position:relative; overflow:hidden; min-width: 0;
+  }
+  .ix-body::before{ content:""; position:absolute; top:0; left:0; right:0; height:2px; background:var(--grad);}
+  .ix-body .ix-lead{ color:var(--fg); font-size:15.5px; line-height:1.55; font-weight:400; margin:0; letter-spacing:-.005em; word-wrap:break-word;}
+  .ix-body p{ color:var(--fg-2); font-size:14px; line-height:1.6; font-weight:300; margin:0; word-wrap:break-word; overflow-wrap:break-word;}
+  .ix-body p b{ color:var(--fg); font-weight:600;}
+  .ix-meta-rows{ margin-top: auto; padding-top:18px; display:flex; flex-direction:column; }
+  .ix-row{
+    display:flex; justify-content:space-between; align-items:baseline; gap:16px;
+    padding:14px 0; border-top:1px solid var(--border);
+  }
+  .ix-row .k{
+    font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.2em;
+    text-transform:uppercase; color:var(--fg-3);
+  }
+  .ix-row .v{ font-weight:500; font-size:13px; color:var(--fg); letter-spacing:-.005em; text-align:right;}
+
+  /* ---- Trio (Race4Women & MDLBEAST supporting) ---- */
+  .ix-trio{ margin-top:56px; }
+  .ix-trio-head, .ix-camp-head{
+    display:grid; grid-template-columns: auto 1fr; gap:20px 22px;
+    align-items:start; margin-bottom:22px;
+  }
+  .ix-camp-head{ grid-template-columns: auto 1fr auto;}
+  @media (max-width: 880px){
+    .ix-trio-head, .ix-camp-head{ grid-template-columns: auto 1fr; }
+    .ix-camp-chips{ grid-column: 1 / -1; }
+  }
+  .ix-num{
+    font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.24em;
+    padding:8px 10px; border:1px solid var(--border-2); border-radius:4px;
+    color:var(--fg); background:rgba(255,255,255,.02);
+  }
+  .ix-trio-head h3, .ix-camp-head h3{
+    font-family:'Inter',sans-serif; font-weight:700; font-size: clamp(22px, 2.4vw, 30px);
+    letter-spacing:-.025em; line-height:1.1; margin:0 0 8px;
+  }
+  .ix-camp-head h3 .x{
+    font-family:'Instrument Serif',serif; font-style:italic; font-weight:400;
+    background:var(--grad); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+    padding: 0 4px;
+  }
+  .ix-trio-head p, .ix-camp-head p{
+    color:var(--fg-2); font-size:15px; line-height:1.65; font-weight:300; margin:0; max-width:680px;
+  }
+  .ix-trio-head p b, .ix-camp-head p b{ color:var(--fg); font-weight:600;}
+  .ix-camp-chips{ display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end; align-items:center;}
+
+  .ix-trio-grid{
+    display:grid; grid-template-columns: repeat(3, 1fr); gap:18px;
+  }
+  @media (max-width: 980px){ .ix-trio-grid{ grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 620px){ .ix-trio-grid{ grid-template-columns: 1fr; } }
+  .ix-card{
+    position:relative; margin:0; border-radius:8px; overflow:hidden;
+    border:1px solid var(--border); background:#0c0c0c;
+    aspect-ratio: 4/5;
+  }
+  .ix-card img{ width:100%; height:100%; object-fit:cover;}
+  .ix-card.r4w img{ object-position: 50% 18%; }
+  .ix-card.studio img{ object-position: 50% 50%; }
+  .ix-card.balad img{ object-position: 50% 30%; }
+  .ix-card figcaption{
+    position:absolute; left:12px; bottom:12px; right:12px; z-index:2;
+    display:flex; flex-direction:column; gap:2px;
+    background:rgba(10,10,10,.82); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    border:1px solid rgba(255,255,255,.06);
+    padding:10px 12px; border-radius:4px;
+  }
+  .ix-card-loc{
+    font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.22em;
+    text-transform:uppercase; color:#fff;
+  }
+  .ix-card-meta{ color:var(--fg-2); font-size:12px; font-weight:300; letter-spacing:-.005em;}
+
+  /* ---- Vaseline × ROW campaign block ---- */
+  .ix-campaign{ margin-top:56px; }
+  .ix-camp-grid{
+    display:grid; grid-template-columns: repeat(3, 1fr); gap:18px;
+  }
+  @media (max-width: 880px){ .ix-camp-grid{ grid-template-columns: 1fr 1fr;} }
+  @media (max-width: 540px){ .ix-camp-grid{ grid-template-columns: 1fr;} }
+  .ix-camp-tile{
+    position:relative; margin:0; border-radius:8px; overflow:hidden;
+    border:1px solid var(--border); background:#0c0c0c;
+    aspect-ratio: 4/5;
+  }
+  .ix-camp-tile img{ width:100%; height:100%; object-fit:cover;}
+  .ix-camp-tile.a img{ object-position: 50% 30%; }
+  .ix-camp-tile.b img{ object-position: 50% 65%; }
+  .ix-camp-tile.c img{ object-position: 50% 22%; }
+  .ix-camp-tile figcaption{
+    position:absolute; left:0; right:0; bottom:0; padding:36px 14px 12px;
+    background: linear-gradient(180deg, transparent, rgba(10,10,10,.85));
+    color:#fff;
+  }
+  .ix-camp-tile figcaption span{
+    font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:.18em;
+    text-transform:uppercase;
+  }
+
+  /* ---- Partners / logos strip ---- */
+  .ix-partners{
+    margin-top:56px; padding:28px 28px 18px;
+    border:1px solid var(--border); border-radius:10px;
+    background: linear-gradient(160deg, rgba(255,255,255,.02), rgba(255,255,255,0) 60%), var(--surface);
+    position:relative; overflow:hidden;
+  }
+  .ix-partners::before{ content:""; position:absolute; top:0; left:0; right:0; height:2px; background:var(--grad); opacity:.7;}
+  .ix-part-head{
+    display:grid; grid-template-columns: auto 1fr; gap:24px;
+    align-items:center; padding-bottom:22px; border-bottom:1px solid var(--border);
+    margin-bottom:22px;
+  }
+  @media (max-width: 880px){ .ix-part-head{ grid-template-columns: 1fr; gap:12px;} }
+  .ix-part-head p{ color:var(--fg-2); font-size:14.5px; line-height:1.6; font-weight:300; margin:0;}
+  .ix-part-head p b{ color:var(--fg); font-weight:600;}
+  .ix-logo-strip{
+    display:grid; grid-template-columns: repeat(5, 1fr);
+    align-items:center; justify-items:center;
+    padding: 14px 4px 6px;
+  }
+  @media (max-width: 980px){ .ix-logo-strip{ grid-template-columns: repeat(3, 1fr); row-gap: 18px;} }
+  @media (max-width: 620px){ .ix-logo-strip{ grid-template-columns: repeat(2, 1fr);} }
+  .lg{
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px;
+    padding: 20px 12px; width:100%; transition: opacity .25s;
+    opacity:.78;
+  }
+  .lg:hover{ opacity:1; }
+  .lg .logo-mark{
+    height:54px; display:flex; align-items:center; justify-content:center;
+  }
+  .lg img{
+    max-height: 54px; max-width: 130px; width:auto; height:auto; object-fit:contain;
+    display:block;
+  }
+  .lg span{
+    font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.22em;
+    text-transform:uppercase; color:var(--fg-3); text-align:center;
+  }
+  .lg.dark img{ background:#0d0d0d; border-radius:6px; padding:4px; }
+  .lg.light img{ background:#ffffff; border-radius:6px; padding:6px; }
+  .ix-partners-foot{
+    margin-top:18px; padding-top:18px; border-top:1px solid var(--border);
+    text-align:center;
+    font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:.2em;
+    text-transform:uppercase; color:var(--fg-3);
+  }
+  .ix-partners-foot b{ color:var(--fg-2); font-weight:500;}
+
+  /* ============ PERFORMANCE PATTERNS ============ */
+  .perf{ padding: 56px var(--pad) 60px; position:relative; border-top:1px solid var(--border);}
+  .perf .case-head{ display:grid; grid-template-columns: 1.3fr 1fr; gap:48px; align-items:end; margin-bottom:36px;}
+  @media (max-width: 880px){ .perf .case-head{ grid-template-columns: 1fr; gap:18px;} }
+  .perf .case-head h2{
+    font-family:'Inter',sans-serif; font-weight:800;
+    font-size: clamp(30px, 3.6vw, 52px); line-height:1.04; letter-spacing:-.04em; margin:10px 0 0;
+  }
+  .perf .case-head h2 .ital{
+    font-family:'Instrument Serif',serif; font-style:italic; font-weight:400; letter-spacing:-.01em;
+    background:var(--grad); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+  }
+  .perf .case-head .lede{ color:var(--fg-2); font-size:15.5px; line-height:1.65; font-weight:300; max-width:480px; margin:0;}
+  .perf-split{ display:grid; grid-template-columns: 1fr 1fr; gap:18px; }
+  @media (max-width: 980px){ .perf-split{ grid-template-columns: 1fr;} }
+  .perf-side{
+    position:relative; border:1px solid var(--border); border-radius:10px;
+    background: linear-gradient(180deg, rgba(255,255,255,.015), rgba(255,255,255,0)), var(--surface);
+    padding: 22px 24px 22px; overflow:hidden;
+    display:flex; flex-direction:column;
+  }
+  .perf-side::before{ content:""; position:absolute; top:0; left:0; right:0; height:2px; background:var(--grad); opacity:.7;}
+  .ph-head{
+    display:flex; align-items:center; justify-content:space-between; gap:14px;
+    padding-bottom:12px; border-bottom:1px solid var(--border);
+  }
+  .ph-title{
+    font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:.22em;
+    text-transform:uppercase; color:var(--fg);
+  }
+  .ph-title b{ color:#FF3D7F; font-weight:600;}
+  .ph-axis{
+    font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:.18em;
+    color:var(--fg-3); text-transform:uppercase;
+  }
+  .ph-chart{ width:100%; height:auto; display:block; margin: 14px 0 6px; }
+
+  /* horizontal ranked bar chart */
+  .ph-bars{ display:flex; flex-direction:column; gap:9px; margin:18px 0 10px; }
+  .ph-bar-row{
+    display:grid; grid-template-columns: 130px 1fr 64px; gap:14px; align-items:center;
+  }
+  .ph-bar-name{
+    font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.04em;
+    color:var(--fg-2); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+    display:flex; flex-direction:column; gap:1px;
+  }
+  .ph-bar-name .sub{
+    font-size:8.5px; color:var(--fg-3); letter-spacing:.1em; text-transform:uppercase;
+  }
+  .ph-bar-row.us .ph-bar-name{ color:#fff; font-weight:600;}
+  .ph-bar-row.us .ph-bar-name .sub{ color:#FFB7CB; }
+  .ph-bar-track{
+    position:relative; height:18px; background:#141414;
+    border:1px solid #1e1e1e; border-radius:3px; overflow:hidden;
+  }
+  .ph-bar-fill{
+    position:absolute; top:0; left:0; bottom:0;
+    background:#2c2c2c; border-right:1px solid #3a3a3a;
+    border-radius:2px;
+  }
+  .ph-bar-row.us .ph-bar-fill{
+    background: var(--grad); border-right-color:transparent;
+    box-shadow: 0 0 16px rgba(255,61,127,.25) inset;
+  }
+  .ph-bar-val{
+    font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--fg-3);
+    text-align:right; letter-spacing:.04em;
+  }
+  .ph-bar-row.us .ph-bar-val{ color:#fff; font-weight:600;}
+
+  .ph-chart .grid line{ stroke:#191919; stroke-width:1; }
+  .ph-chart .axis text{ font-family:'JetBrains Mono',monospace; font-size:8.5px; fill:#6E6E6E; letter-spacing:.05em;}
+  .ph-chart .axis line{ stroke:#2a2a2a; }
+  .ph-chart .dot{ fill:#2c2c2c; stroke:#3a3a3a; stroke-width:1; }
+  .ph-chart .dot.us{ stroke:#FF3D7F; stroke-width:1.6; }
+  .ph-chart .lbl{ font-family:'JetBrains Mono',monospace; font-size:8.5px; fill:#A8A8A8; }
+  .ph-chart .lbl.us{ fill:#fff; font-weight:600; font-size:10px; }
+  .ph-chart .alabel{
+    font-family:'JetBrains Mono',monospace; font-size:9px; fill:#6E6E6E; letter-spacing:.16em; text-transform:uppercase;
+  }
+  .ph-chart .ref{ stroke:#FF3D7F; stroke-width:1; stroke-dasharray:3 4; opacity:.35; }
+  .ph-legend{
+    display:flex; gap:18px; align-items:center; padding: 4px 0 4px;
+    font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--fg-3); flex-wrap:wrap;
+  }
+  .ph-legend .lg-item{ display:inline-flex; align-items:center; gap:8px;}
+  .ph-legend .lg-dot{ width:9px; height:9px; border-radius:999px; background:#2c2c2c; border:1px solid #3a3a3a;}
+  .ph-legend .lg-dot.us{ background:radial-gradient(circle at 30% 30%, #FF7A45, #FF3D7F 60%, #9D4EDD); border-color:#FF3D7F; box-shadow:0 0 10px rgba(255,61,127,.6);}
+  .ph-take{
+    margin-top:auto; padding-top:14px; border-top:1px solid var(--border);
+    font-family:'Instrument Serif',serif; font-style:italic; font-size: clamp(15px, 1.3vw, 18px);
+    line-height:1.5; color:var(--fg); letter-spacing:-.005em;
+  }
+  .ph-take .pin{
+    display:inline-flex; align-items:center; gap:8px; margin-right:10px;
+    font-family:'JetBrains Mono',monospace; font-style:normal; font-size:9.5px;
+    letter-spacing:.2em; text-transform:uppercase; color:#FF3D7F;
+  }
+  .ph-take .pin::before{
+    content:""; width:6px; height:6px; border-radius:999px; background:#FF3D7F;
+    box-shadow:0 0 8px rgba(255,61,127,.7);
+  }
+  .ph-take b{
+    font-family:'Instrument Serif',serif; font-weight:400;
+    background:var(--grad); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+  }
+
+  /* ============ NEWS CURATION PIPELINE ============ */
+  .pipe{ padding: 64px var(--pad) 72px; position:relative; border-top:1px solid var(--border); background: linear-gradient(180deg, var(--bg) 0%, #0c0c0c 100%);}
+  .pipe .case-head{ display:grid; grid-template-columns: 1.3fr 1fr; gap:48px; align-items:end; margin-bottom:40px;}
+  @media (max-width: 880px){ .pipe .case-head{ grid-template-columns: 1fr; gap:18px;} }
+  .pipe .case-head h2{
+    font-family:'Inter',sans-serif; font-weight:800;
+    font-size: clamp(30px, 3.8vw, 56px); line-height:1.04; letter-spacing:-.04em; margin:10px 0 0;
+  }
+  .pipe .case-head h2 .ital{
+    font-family:'Instrument Serif',serif; font-style:italic; font-weight:400; letter-spacing:-.01em;
+    background:var(--grad); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+  }
+  .pipe .case-head .lede{ color:var(--fg-2); font-size:15.5px; line-height:1.65; font-weight:300; max-width:440px; margin:0;}
+
+  /* horizontal pipeline flow */
+  .pipe-flow{
+    display:grid; grid-template-columns: repeat(5, 1fr); gap:0;
+    border:1px solid var(--border); border-radius:10px; background:var(--surface);
+    margin-bottom:36px; overflow:hidden; position:relative;
+  }
+  .pipe-flow::before{ content:""; position:absolute; top:0; left:0; right:0; height:2px; background:var(--grad); opacity:.7;}
+  .pf-node{
+    padding:20px 18px 18px; position:relative;
+    border-right:1px solid var(--border);
+    display:flex; flex-direction:column; gap:8px;
+  }
+  .pf-node:last-child{ border-right:none;}
+  .pf-node .pf-num{
+    font-family:'JetBrains Mono',monospace; font-size:10px; color:#FF3D7F;
+    letter-spacing:.2em; text-transform:uppercase;
+  }
+  .pf-node .pf-title{
+    font-family:'Inter',sans-serif; font-weight:700; font-size:14.5px; letter-spacing:-.015em; color:var(--fg);
+  }
+  .pf-node .pf-sub{
+    font-family:'JetBrains Mono',monospace; font-size:10px; line-height:1.5;
+    color:var(--fg-3); letter-spacing:.04em;
+  }
+  .pf-node .pf-arrow{
+    position:absolute; right:-7px; top:50%; transform:translateY(-50%);
+    width:14px; height:14px; border-radius:999px;
+    background:var(--bg); border:1px solid var(--border-2);
+    display:grid; place-items:center; z-index:2;
+    font-family:'JetBrains Mono',monospace; font-size:10px; color:#FF3D7F;
+  }
+  .pf-node:last-child .pf-arrow{ display:none;}
+  @media (max-width: 1000px){
+    .pipe-flow{ grid-template-columns: repeat(2, 1fr); }
+    .pf-node{ border-right:1px solid var(--border); border-bottom:1px solid var(--border);}
+    .pf-node:nth-child(2n){ border-right:none;}
+    .pf-node:last-child{ border-bottom:none;}
+    .pf-node .pf-arrow{ display:none;}
+  }
+
+  /* pipe body split */
+  .pipe-body{ display:grid; grid-template-columns: 1.35fr 1fr; gap:36px; align-items:start;}
+  @media (max-width: 980px){ .pipe-body{ grid-template-columns: 1fr; gap:24px;} }
+
+  .pipe-overview{
+    border:1px solid var(--border); border-radius:8px; background:var(--surface);
+    padding:22px 24px; margin-bottom:22px;
+  }
+  .pipe-overview .lab{
+    display:inline-flex; align-items:center; gap:10px;
+    font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.24em;
+    text-transform:uppercase; color:var(--fg-3); margin-bottom:10px;
+  }
+  .pipe-overview .lab .gline{ width:18px; height:1px; background:var(--grad);}
+  .pipe-overview p{ color:var(--fg-2); font-size:15px; line-height:1.65; font-weight:300; margin:0;}
+  .pipe-overview p b{ color:var(--fg); font-weight:600;}
+
+  .pipe-modules{
+    display:grid; grid-template-columns: repeat(2, 1fr); gap:1px; background:var(--border);
+    border:1px solid var(--border); border-radius:8px; overflow:hidden; margin-bottom:22px;
+  }
+  .pm-card{
+    background:var(--bg); padding:18px 18px 16px; display:flex; flex-direction:column; gap:8px;
+    position:relative;
+  }
+  .pm-card.full{ grid-column: span 2;}
+  .pm-head{ display:flex; align-items:center; gap:10px;}
+  .pm-num{
+    font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:.2em;
+    color:#FF3D7F; text-transform:uppercase;
+  }
+  .pm-title{
+    font-family:'Inter',sans-serif; font-weight:700; font-size:13.5px; letter-spacing:-.01em; color:var(--fg);
+  }
+  .pm-list{
+    font-family:'JetBrains Mono',monospace; font-size:10.5px; line-height:1.65;
+    color:var(--fg-2); letter-spacing:.02em;
+    display:flex; flex-wrap:wrap; gap:6px;
+  }
+  .pm-tag{
+    padding:3px 8px; border:1px solid var(--border-2); border-radius:999px;
+    background:rgba(255,255,255,.015); color:var(--fg-2); font-size:10px; letter-spacing:.04em;
+  }
+  @media (max-width: 600px){ .pipe-modules{ grid-template-columns: 1fr;} .pm-card.full{ grid-column: auto;} }
+
+  .pipe-tech{
+    border:1px solid rgba(255,61,127,.25); border-radius:8px;
+    background: linear-gradient(160deg, rgba(255,61,127,.06), rgba(157,78,221,.03) 70%, var(--surface));
+    padding:20px 22px 18px;
+  }
+  .pipe-tech .lab{
+    display:inline-flex; align-items:center; gap:10px;
+    font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.24em;
+    text-transform:uppercase; color:#FF3D7F; margin-bottom:14px;
+  }
+  .pipe-tech .lab .gline{ width:18px; height:1px; background:var(--grad);}
+  .pipe-tech ul{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px;}
+  .pipe-tech li{
+    color:var(--fg-2); font-size:13.5px; line-height:1.55; font-weight:300;
+    padding-left:22px; position:relative;
+  }
+  .pipe-tech li::before{
+    content:""; position:absolute; left:0; top:8px; width:10px; height:1px; background:var(--grad);
+  }
+  .pipe-tech li b{ color:var(--fg); font-weight:600;}
+
+  /* right side: two phone visuals connected */
+  .pipe-visuals{
+    position:relative; display:grid; grid-template-columns: 1fr;
+    gap:14px; padding: 8px 0;
+  }
+  .pipe-phones{
+    position:relative; display:flex; justify-content:space-between; align-items:flex-start;
+    padding: 30px 8px 28px;
+  }
+  .pipe-phone{
+    width:48%; aspect-ratio: 9/19;
+    border-radius:22px; overflow:hidden; position:relative;
+    border:1px solid var(--border-2);
+    background:#000;
+    box-shadow: 0 20px 60px -20px rgba(0,0,0,.75), 0 0 0 6px #0a0a0a, 0 0 0 7px #1f1f1f;
+  }
+  .pipe-phone.source{ transform: translateY(-12px) rotate(-3deg);}
+  .pipe-phone.delivery{ transform: translateY(18px) rotate(3deg);}
+  .pipe-phone img{ width:100%; height:100%; object-fit:cover; object-position:center top; display:block;}
+  .pipe-phone .ptag{
+    position:absolute; bottom:10px; left:10px; right:10px;
+    background:rgba(0,0,0,.75); backdrop-filter:blur(8px);
+    border:1px solid rgba(255,255,255,.08); border-radius:5px;
+    padding:7px 10px; display:flex; align-items:center; gap:8px;
+    font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:.16em;
+    text-transform:uppercase; color:#fff;
+  }
+  .pipe-phone .ptag .dot{ width:6px; height:6px; border-radius:999px; background:#FF3D7F; box-shadow:0 0 8px rgba(255,61,127,.7);}
+  .pipe-phone .pcaption{
+    position:absolute; top:10px; left:10px;
+    background:rgba(0,0,0,.7); border:1px solid rgba(255,255,255,.08); border-radius:4px;
+    padding:5px 8px; font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:.14em;
+    text-transform:uppercase; color:#FFB7CB;
+  }
+  .pipe-link{
+    position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
+    width:120px; height:120px; z-index:3; pointer-events:none;
+  }
+  .pipe-link svg{ width:100%; height:100%; display:block; overflow:visible;}
+  .pipe-link .pl-pill{
+    position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
+    background:#0a0a0a; border:1px solid rgba(255,61,127,.35); border-radius:999px;
+    padding:6px 12px; display:flex; align-items:center; gap:6px;
+    font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:.2em;
+    text-transform:uppercase; color:#fff; white-space:nowrap;
+    box-shadow: 0 8px 30px rgba(0,0,0,.6);
+  }
+  .pipe-link .pl-pill .dot{
+    width:6px; height:6px; border-radius:999px; background:var(--grad);
+    box-shadow:0 0 10px rgba(255,61,127,.7);
+  }
+  .pipe-vis-foot{
+    display:grid; grid-template-columns: 1fr 1fr; gap:14px;
+    padding-top:16px; border-top:1px solid var(--border);
+  }
+  .pipe-vis-foot .vfi{
+    display:flex; flex-direction:column; gap:6px;
+  }
+  .pipe-vis-foot .vfi .lab{
+    font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:.2em;
+    text-transform:uppercase; color:#FF3D7F;
+  }
+  .pipe-vis-foot .vfi .desc{
+    color:var(--fg-2); font-size:12.5px; line-height:1.55; font-weight:300;
+  }
+  .pipe-vis-foot .vfi .desc b{ color:var(--fg); font-weight:600;}
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <span class="rb-mark">ryan <span class="g">benny</span><span class="dot"></span></span>
+  <div class="links">
+    <a href="#about">About</a>
+    <a href="#education">Education</a>
+    <a href="#network">Dynamic Network</a>
+    <a href="#cases">Case Studies</a>
+    <a href="#pipeline">Pipeline</a>
+    <a href="#artwork">Artwork</a>
+    <a href="#experience">Experience</a>
+    <a href="#achievements">Achievements</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <a href="#contact" class="meta nav-cta">Get in touch</a>
+</nav>
+
+<!-- ============ COVER / INTRODUCTION ============ -->
+<header class="hero" data-screen-label="01 Cover">
+  <div class="glow-a"></div>
+  <div class="glow-b"></div>
+
+  <div class="hero-grid">
+    <div>
+      <span class="eyebrow">Portfolio · 2026</span>
+      <h1>Ryan <span class="last">Benny.</span></h1>
+      <p class="role">Founder, editor, and operator. <span class="thin">I build modern English-language media for the Gulf, from a desk in Jeddah.</span></p>
+      <p class="sub">This portfolio is a sample of what I have made so far. Writing, editorial direction, brand building, and the day-to-day craft of running a media company. Most of it lives under one project, Dynamic Network, which is where the bulk of the work in here comes from.</p>
+    </div>
+
+    <div class="hero-portrait">
+      <img src="assets/ryan-benny-photo.png" alt="Ryan Benny"/>
+      <div class="tag"><span class="dot"></span>Ryan Benny · Jeddah, KSA</div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ ABOUT RYAN ============ -->
+<section class="block" id="about" data-screen-label="02 About Ryan">
+  <div class="section-no"><b>01</b> &nbsp; ABOUT</div>
+  <div class="section-head">
+    <div>
+      <span class="eyebrow">The person</span>
+      <h2>I write, edit, and run<br/>a <span class="ital">media outlet</span>.</h2>
+    </div>
+    <p class="lede">Born and raised in the Gulf. Editorial first, operator second, founder by necessity. I write, edit, set the tone, run the pipeline, and ship the work.</p>
+  </div>
+
+  <div class="about-grid">
+    <div class="bio">
+      <p>I am a writer, editor, and founder based in Jeddah. I came into media the long way, through reading a lot, watching how stories move online, and eventually deciding to build the kind of outlet I wanted to read.</p>
+      <p>Most of my time goes into <b>editorial work</b>. I write, edit, art direct, and set the voice for every brand I run. I treat each post like a small piece of journalism, even when it looks like a meme. The rest of the time goes into the parts no one talks about: ops, scheduling, audience replies, late-night corrections, building the next thing.</p>
+      <p>Outside the studio I shoot, I read a lot, and I keep a camera close. The portrait on this page is from a rooftop in Jeddah, on a night that ended with more photos than conversations. That habit, paying attention, is most of the job.</p>
+      <div class="signature">Ryan Benny, Jeddah</div>
+    </div>
+
+    <aside class="quick-card">
+      <div class="gh">Quick facts</div>
+      <h3>At a glance</h3>
+      <div class="row"><span class="k">Based</span><span class="v">Jeddah, KSA</span></div>
+      <div class="row"><span class="k">Languages</span><span class="v">English, Arabic, Malayalam</span></div>
+      <div class="row"><span class="k">Role</span><span class="v">Founder &amp; Editor</span></div>
+      <div class="row"><span class="k">Founded</span><span class="v">Dynamic Network, 2021</span></div>
+      <div class="row"><span class="k">Focus</span><span class="v">Gulf media, English-first</span></div>
+      <div class="row"><span class="k">Working on</span><span class="v">9 Brands, 7 GCC Markets</span></div>
+      <div class="row"><span class="k">Reach</span><span class="v">28M+ monthly</span></div>
+    </aside>
+  </div>
+</section>
+
+<!-- ============ EDUCATION ============ -->
+<section class="block" id="education" data-screen-label="03 Education">
+  <div class="section-no"><b>02</b> &nbsp; EDUCATION</div>
+  <div class="section-head">
+    <div>
+      <span class="eyebrow">Background</span>
+      <h2>Studied, <span class="ital">self-taught</span>, still learning.</h2>
+    </div>
+    <p class="lede">A STEM background built alongside real leadership work. Eight clubs, multiple Chief Executive roles, and a track record of organising events that mattered on and off campus.</p>
+  </div>
+
+  <article class="edu-card">
+    <div class="edu-head">
+      <div>
+        <div class="school-tag">High School</div>
+        <h3>International Indian School, Jeddah</h3>
+        <div class="deg"><b>High School Diploma, AISSCE Class XII</b> &middot; STEM stream</div>
+      </div>
+      <span class="dates">Apr 2018 &middot; May 2025</span>
+    </div>
+
+    <div class="edu-focus">
+      <span class="lab">Academic focus</span>
+      <span class="chip">Physics</span>
+      <span class="chip">Chemistry</span>
+      <span class="chip">Mathematics</span>
+      <span class="chip">Computer Science</span>
+    </div>
+
+    <div class="edu-cols">
+      <div class="edu-col">
+        <div class="col-head"><span class="gline"></span><span>Activities &amp; Leadership</span></div>
+        <ul class="edu-list">
+          <li><b>Class Prefect</b></li>
+          <li><b>Chief Executive</b>, Science Club</li>
+          <li><b>Chief Executive</b>, Reporters Club</li>
+          <li><b>President</b>, Arts Club</li>
+          <li><b>Delegate</b>, Model United Nations, 2023 to 2025</li>
+        </ul>
+      </div>
+
+      <div class="edu-col">
+        <div class="col-head"><span class="gline"></span><span>Awards &amp; Achievements</span></div>
+        <ul class="edu-list awards">
+          <li>Recognized for strong performance in science competitions, securing 1st Position in the Science Olympiad Clusters Saudi Arabia, Senior Category, and representing the winning school team at the CBSE Cluster Meet for a project on larvae in integrated farming. read</li>
+          <li><b>1st Position</b>, Annual Science Quiz Competition, 2024 to 2025</li>
+          <li><b>Data Analytics</b>, 8-week certification, Indian Institute of Technology Madras</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="edu-events">
+      <span class="lab">Events &amp; Responsibilities</span>
+      <p>Organised major cultural festivals, school functions, and formal events including the <b>Investiture Ceremony</b>, <b>Republic Day</b>, and <b>Cultural Events</b>. Also organised and participated in events held by the <b>Consulate General of India, Jeddah</b>.</p>
+    </div>
+  </article>
+</section>
+
+<!-- ============ DYNAMIC NETWORK (compact, single section) ============ -->
+<section class="block" id="network" data-screen-label="04 Dynamic Network">
+  <div class="section-no"><b>03</b> &nbsp; DYNAMIC NETWORK</div>
+  <div class="section-head">
+    <div>
+      <span class="eyebrow">THE BRAND</span>
+      <h2>Dynamic <span class="ital">Network</span>.</h2>
+    </div>
+    <p class="lede">The brand I founded in 2021. Nine Instagram brands, a real-time news pipeline, and a broadcast layer. Detailed case studies follow on the next pages.</p>
+  </div>
+
+  <div class="dn-grid">
+    <div class="dn-copy">
+      <p>Dynamic Network is the English-language Gulf media group I founded and run from Jeddah. It exists because the audience I belong to, young, English-speaking Saudis and expats, did not have a voice that sounded like them.</p>
+      <p>The company operates seven Instagram brands across five GCC markets, a <b>real-time news pipeline</b> on Telegram and WhatsApp, and a broadcast layer for high-stakes events. Every brand is built from zero, no inherited audience, no outside capital.</p>
+
+      <div class="dn-stat-strip">
+        <div class="ni"><div class="lab">Total reach</div><div class="num">28M+</div></div>
+        <div class="ni"><div class="lab">Audience</div><div class="num">120K+</div></div>
+        <div class="ni"><div class="lab">Markets</div><div class="num">5</div></div>
+      </div>
+    </div>
+
+    <div class="net-grid">
+      <div class="brand-card flagship">
+        <div class="avatar"><img src="assets/logo-saudi-united.png" alt=""/></div>
+        <div class="meta">
+          <div class="name">Saudi United</div>
+          <div class="handle">@_saudi.united_</div>
+        </div>
+        <span class="foll">89.6K</span>
+      </div>
+      <div class="brand-card">
+        <div class="avatar"><img src="assets/logo-saudi-insider.png" alt=""/></div>
+        <div class="meta">
+          <div class="name">Saudi Insider</div>
+          <div class="handle">@saudi.insider</div>
+        </div>
+        <span class="foll">27.2K</span>
+      </div>
+      <div class="brand-card">
+        <div class="avatar"><img src="assets/logo-uae-united.png" alt=""/></div>
+        <div class="meta">
+          <div class="name">UAE United</div>
+          <div class="handle">@_uae.united_</div>
+        </div>
+        <span class="foll">4K</span>
+      </div>
+      <div class="brand-card">
+        <div class="avatar"><img src="assets/logo-qatar-united.png" alt=""/></div>
+        <div class="meta">
+          <div class="name">Qatar United</div>
+          <div class="handle">@_qatar.united_</div>
+        </div>
+        <span class="foll">4.4K</span>
+      </div>
+      <div class="brand-card">
+        <div class="avatar"><img src="assets/logo-oman-united.png" alt=""/></div>
+        <div class="meta">
+          <div class="name">Oman United</div>
+          <div class="handle">@_oman.united_</div>
+        </div>
+        <span class="foll">1.9K</span>
+      </div>
+      <div class="brand-card">
+        <div class="avatar"><img src="assets/logo-kuwait-united.png" alt=""/></div>
+        <div class="meta">
+          <div class="name">Kuwait United</div>
+          <div class="handle">@_kuwait.united_</div>
+        </div>
+        <span class="foll">795</span>
+      </div>
+      <div class="brand-card">
+        <div class="avatar"><img src="assets/memes-of-jeddah-logo.png" alt="" style="width:100%; height:100%; object-fit:cover; position:static; transform:none;"/></div>
+        <div class="meta">
+          <div class="name">Memes of Jeddah</div>
+          <div class="handle">@memes.of.jeddah</div>
+        </div>
+        <span class="foll">10K</span>
+      </div>
+      <div class="brand-card">
+        <div class="avatar"><img src="assets/jedluxe-logo.png" alt="" style="width:100%; height:100%; object-fit:cover; position:static; transform:none;"/></div>
+        <div class="meta">
+          <div class="name">The Jedluxe SA</div>
+          <div class="handle">@jedluxee</div>
+        </div>
+        <span class="foll">1K</span>
+      </div>
+      <div class="brand-card" style="grid-column: 1 / -1;">
+        <div class="avatar"><img src="assets/find-qa-logo.png" alt="" style="width:100%; height:100%; object-fit:cover; position:static; transform:none;"/></div>
+        <div class="meta">
+          <div class="name">Find Qatar</div>
+          <div class="handle">@find.qa</div>
+        </div>
+        <span class="foll">2.3K</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CASE STUDY 01 — SAUDI UNITED ============ -->
+<section class="case" id="cases" data-screen-label="05 Case · Saudi United">
+  <div class="section-no"><b>04</b> &nbsp; CASE STUDIES</div>
+  <div class="case-head">
+    <div>
+      <span class="case-tag">CASE 01 · FLAGSHIP</span>
+      <h2 class="case-title">Saudi <span class="ital">United</span></h2>
+    </div>
+    <div class="case-meta">
+      <div class="row"><span class="k">Brand</span><span>@_saudi.united_</span></div>
+      <div class="row"><span class="k">Category</span><span>GCC youth media</span></div>
+      <div class="row"><span class="k">Period</span><span>2023, ongoing</span></div>
+      <div class="row"><span class="k">My role</span><span>Founder, editor, lead writer</span></div>
+    </div>
+  </div>
+
+  <div class="case-body">
+    <div class="case-text">
+      <div class="block">
+        <div class="lab"><span class="gline"></span><span>Brief</span></div>
+        <p>Build a fresh, English-language media presence for Saudi Arabia and the GCC. Something that speaks to a generation that lives in feeds, not on broadcast TV.</p>
+      </div>
+      <div class="block">
+        <div class="lab"><span class="gline"></span><span>What I made</span></div>
+        <p>An audience-driven editorial model. Daily polls, review-style posts, comment-led discussions, fast storytelling, a distinct visual identity, and a steady cadence of collaborations with regional creators. I wrote, edited, and set every visual cue myself in the first year.</p>
+      </div>
+
+      <div class="block">
+        <div class="lab"><span class="gline"></span><span>Performance</span></div>
+        <div class="case-results four">
+          <div class="ri"><div class="num">89.6K</div><div class="lab">Followers, May 2026</div></div>
+          <div class="ri"><div class="num">2.1M</div><div class="lab">Views, last 30 days</div></div>
+          <div class="ri"><div class="num">1,634</div><div class="lab">Views per 1K followers</div></div>
+          <div class="ri"><div class="num">8.5M</div><div class="lab">Top reel, single post</div></div>
+        </div>
+
+        <div class="vs-row">
+          <div class="vi">
+            <div class="vlab">Vs category leader</div>
+            <div class="head"><span class="mult">137×</span></div>
+            <div class="vdesc">more reach per follower than <b>thesaudigate</b>, while posting <b>37× less often</b>.</div>
+          </div>
+          <div class="vi">
+            <div class="vlab">Vs best competing reel</div>
+            <div class="head"><span class="mult">13×</span></div>
+            <div class="vdesc">larger than the closest competitor's top reel. <b>70×</b> larger than thesaudigate's.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="case-pull">Top posts cross 1M views. The highest-performing English-language Saudi content in the category.</div>
+    </div>
+
+    <div class="proof-set">
+      <div class="proof-row">
+      <div class="proof feed">
+        <div class="plab"><span class="dot"></span>Profile · _saudi.united_</div>
+        <img src="assets/02-saudi-united-profile.png" alt="Saudi United profile"/>
+      </div>
+      <div class="proof feed">
+        <div class="plab"><span class="dot"></span>Content grid</div>
+        <img src="assets/04-saudi-united-content.png" alt="Saudi United content grid"/>
+      </div>
+      </div>
+
+      <div class="collab-block">
+        <div class="cb-head"><span class="gline"></span><span>Brand Collaborations</span></div>
+        <div class="collab-list logos">
+          <div class="logo has-img"><img src="assets/logo-noon.png" alt="Noon"/></div>
+          <div class="logo has-img"><img src="assets/logo-muzz.png" alt="Muzz"/></div>
+          <div class="logo has-img"><img src="assets/logo-mandi-world.png" alt="Mandi World"/></div>
+          <div class="logo has-img dark"><img src="assets/logo-apple-box.png" alt="Apple Box"/></div>
+          <div class="logo has-img dark"><img src="assets/logo-hyperactive.png" alt="Hyperactive"/></div>
+          <div class="logo has-img"><img src="assets/logo-radisson.png" alt="Radisson Blu"/></div>
+          <div class="logo has-img dark"><img src="assets/logo-gymnation.png" alt="GymNation"/></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CASE STUDY 02 — SAUDI INSIDER ============ -->
+<section class="case" data-screen-label="06 Case · Saudi Insider">
+  <div class="case-head">
+    <div>
+      <span class="case-tag">CASE 02 · NEWS</span>
+      <h2 class="case-title">Saudi <span class="ital">Insider</span></h2>
+    </div>
+    <div class="case-meta">
+      <div class="row"><span class="k">Brand</span><span>@saudi.insider</span></div>
+      <div class="row"><span class="k">Layers</span><span>Instagram, Telegram, WhatsApp</span></div>
+      <div class="row"><span class="k">Period</span><span>Launched 2024</span></div>
+      <div class="row"><span class="k">My role</span><span>Founder, news editor, curator</span></div>
+    </div>
+  </div>
+
+  <div class="case-body reverse">
+    <div class="proof-set">
+      <div class="proof-row">
+      <div class="proof feed">
+        <div class="plab"><span class="dot"></span>Profile · @saudi.insider</div>
+        <img src="assets/05-saudi-insider-profile.png" alt="Saudi Insider profile"/>
+      </div>
+      <div class="proof feed">
+        <div class="plab"><span class="dot"></span>Telegram pipeline</div>
+        <img src="assets/01-saudi-insider-telegram.png" alt="Saudi Insider Telegram pipeline"/>
+      </div>
+      </div>
+
+      <div class="collab-block">
+        <div class="cb-head"><span class="gline"></span><span>Brand Collaborations</span></div>
+        <div class="collab-list logos">
+          <div class="logo has-img"><img src="assets/logo-sunsilk.png" alt="Sunsilk"/></div>
+          <div class="logo has-img dark"><img src="assets/logo-lenskart.png" alt="Lenskart"/></div>
+          <div class="logo has-img"><img src="assets/logo-vaseline.png" alt="Vaseline"/></div>
+          <div class="logo has-img dark"><img src="assets/logo-row.png" alt="ROW Cafe"/></div>
+        </div>
+      </div>
+
+      <div class="case-pull">Smallest account in the category. The other four are buying audience. Saudi Insider is earning it.</div>
+    </div>
+
+    <div class="case-text">
+      <div class="block">
+        <div class="lab"><span class="gline"></span><span>Brief</span></div>
+        <p>Cover Saudi and regional news the way I would actually want to read it. Modern, real-time, English-first, and faster than the traditional outlets.</p>
+      </div>
+      <div class="block">
+        <div class="lab"><span class="gline"></span><span>What I made</span></div>
+        <p>Saudi Insider was created as a modern English-language digital news and updates platform focused on delivering fast, visually engaging, and audience-driven coverage across Saudi Arabia and the GCC. The platform became recognized for its modern storytelling style, creative news presentation, and strong audience engagement, reaching more than <b>28M+ audience reach</b> across digital platforms. Alongside Saudi Insider, the <b>Saudi United WhatsApp community</b> rapidly grew to nearly <b>5,000+ members</b>, becoming an active real-time update platform during major regional situations, including the Iran-US escalation period. During critical moments, we continuously shared live developments, civil defense alerts, interception updates, safety-related information, and regional coverage in a fast and organized format. This helped audiences stay informed through real-time digital communication and community-based media updates.</p>
+      </div>
+
+      <div class="block">
+        <div class="lab"><span class="gline"></span><span>Performance</span></div>
+        <div class="case-results four">
+          <div class="ri"><div class="num">27.2K</div><div class="lab">Followers, May 2026</div></div>
+          <div class="ri"><div class="num">786.7K</div><div class="lab">Views, last 30 days</div></div>
+          <div class="ri"><div class="num">4,600</div><div class="lab">Broadcast members</div></div>
+          <div class="ri"><div class="num">18.92%</div><div class="lab">Engagement rate, last ~30 posts</div></div>
+        </div>
+
+        <div class="vs-row">
+          <div class="vi">
+            <div class="vlab">Vs second-place account</div>
+            <div class="head"><span class="mult">8×</span></div>
+            <div class="vdesc">higher engagement rate than the next-best Saudi news account in the category.</div>
+          </div>
+          <div class="vi">
+            <div class="vlab">Vs @arabnews</div>
+            <div class="head"><span class="mult">1,892×</span></div>
+            <div class="vdesc">more engagement per follower than an account <b>29× the size</b> of Saudi Insider.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PERFORMANCE PATTERNS ============ -->
+<section class="perf" id="performance" data-screen-label="07 Performance Patterns">
+  <div class="case-head">
+    <div>
+      <span class="case-tag">DATA · CASE STUDIES 01 + 02</span>
+      <h2>Performance <span class="ital">Patterns.</span></h2>
+    </div>
+    <p class="lede">Same story, told visually. Where each account sits against its peers on the two patterns that matter, audience size against actual reach, and audience size against engagement strength.</p>
+  </div>
+
+  <div class="perf-split">
+
+    <!-- ============ LEFT · SAUDI UNITED ============ -->
+    <div class="perf-side">
+      <div class="ph-head">
+        <span class="ph-title">Saudi United <b>· Content Efficiency</b></span>
+        <span class="ph-axis">Followers × Avg. video views</span>
+      </div>
+
+      <div class="ph-bars" role="img" aria-label="Average video views per account, Saudi lifestyle accounts, ranked descending">
+        <div class="ph-bar-row us">
+          <div class="ph-bar-name">Saudi United<span class="sub">89.7K followers</span></div>
+          <div class="ph-bar-track"><div class="ph-bar-fill" style="width:100%;"></div></div>
+          <div class="ph-bar-val">146.5K</div>
+        </div>
+        <div class="ph-bar-row">
+          <div class="ph-bar-name">trulysaudi<span class="sub">13.8K followers</span></div>
+          <div class="ph-bar-track"><div class="ph-bar-fill" style="width:13.8%;"></div></div>
+          <div class="ph-bar-val">20.2K</div>
+        </div>
+        <div class="ph-bar-row">
+          <div class="ph-bar-name">factksa<span class="sub">21.3K followers</span></div>
+          <div class="ph-bar-track"><div class="ph-bar-fill" style="width:9.9%;"></div></div>
+          <div class="ph-bar-val">14.5K</div>
+        </div>
+        <div class="ph-bar-row">
+          <div class="ph-bar-name">ksa_way_of_life<span class="sub">209K followers</span></div>
+          <div class="ph-bar-track"><div class="ph-bar-fill" style="width:9.4%;"></div></div>
+          <div class="ph-bar-val">13.7K</div>
+        </div>
+        <div class="ph-bar-row">
+          <div class="ph-bar-name">lovinriyadh<span class="sub">278.5K followers</span></div>
+          <div class="ph-bar-track"><div class="ph-bar-fill" style="width:4.5%;"></div></div>
+          <div class="ph-bar-val">6.6K</div>
+        </div>
+        <div class="ph-bar-row">
+          <div class="ph-bar-name">localrydh<span class="sub">109K followers</span></div>
+          <div class="ph-bar-track"><div class="ph-bar-fill" style="width:2.5%; min-width:4px;"></div></div>
+          <div class="ph-bar-val">2.4K</div>
+        </div>
+        <div class="ph-bar-row">
+          <div class="ph-bar-name">scenenowsaudi<span class="sub">61.8K followers</span></div>
+          <div class="ph-bar-track"><div class="ph-bar-fill" style="width:2%; min-width:4px;"></div></div>
+          <div class="ph-bar-val">1.8K</div>
+        </div>
+        <div class="ph-bar-row">
+          <div class="ph-bar-name">thesaudigate<span class="sub">90.7K followers</span></div>
+          <div class="ph-bar-track"><div class="ph-bar-fill" style="width:1.5%; min-width:4px;"></div></div>
+          <div class="ph-bar-val">1.1K</div>
+        </div>
+      </div>
+
+      <div class="ph-legend">
+        <span class="lg-item"><span class="lg-dot us"></span>Saudi United</span>
+        <span class="lg-item"><span class="lg-dot"></span>Saudi lifestyle peers</span>
+        <span class="lg-item" style="margin-left:auto;">Avg. views per post · n=8</span>
+      </div>
+
+      <div class="ph-take">
+        <span class="pin">Takeaway</span>
+        Saudi United pulls <b>7×</b> the average views of the next account, despite many peers having larger audiences.
+      </div>
+    </div>
+
+    <!-- ============ RIGHT · SAUDI INSIDER ============ -->
+    <div class="perf-side">
+      <div class="ph-head">
+        <span class="ph-title">Saudi Insider <b>· Engagement Strength</b></span>
+        <span class="ph-axis">Followers × Engagement rate</span>
+      </div>
+
+      <div class="ph-bars" role="img" aria-label="Engagement rate per account, Saudi news and media accounts, ranked descending">
+        <div class="ph-bar-row us">
+          <div class="ph-bar-name">Saudi Insider<span class="sub">27.2K followers</span></div>
+          <div class="ph-bar-track"><div class="ph-bar-fill" style="width:100%;"></div></div>
+          <div class="ph-bar-val">12.44%</div>
+        </div>
+        <div class="ph-bar-row">
+          <div class="ph-bar-name">scenenowsaudi<span class="sub">61.8K followers</span></div>
+          <div class="ph-bar-track"><div class="ph-bar-fill" style="width:2.4%; min-width:4px;"></div></div>
+          <div class="ph-bar-val">0.30%</div>
+        </div>
+        <div class="ph-bar-row">
+          <div class="ph-bar-name">ksa_way_of_life<span class="sub">209K followers</span></div>
+          <div class="ph-bar-track"><div class="ph-bar-fill" style="width:1.6%; min-width:4px;"></div></div>
+          <div class="ph-bar-val">0.20%</div>
+        </div>
+        <div class="ph-bar-row">
+          <div class="ph-bar-name">localrydh<span class="sub">109K followers</span></div>
+          <div class="ph-bar-track"><div class="ph-bar-fill" style="width:1.0%; min-width:4px;"></div></div>
+          <div class="ph-bar-val">0.12%</div>
+        </div>
+        <div class="ph-bar-row">
+          <div class="ph-bar-name">lovinriyadh<span class="sub">278.5K followers</span></div>
+          <div class="ph-bar-track"><div class="ph-bar-fill" style="width:0.7%; min-width:4px;"></div></div>
+          <div class="ph-bar-val">0.085%</div>
+        </div>
+        <div class="ph-bar-row">
+          <div class="ph-bar-name">thesaudigate<span class="sub">90.7K followers</span></div>
+          <div class="ph-bar-track"><div class="ph-bar-fill" style="width:0.6%; min-width:4px;"></div></div>
+          <div class="ph-bar-val">0.077%</div>
+        </div>
+        <div class="ph-bar-row">
+          <div class="ph-bar-name">factksa<span class="sub">21.3K followers</span></div>
+          <div class="ph-bar-track"><div class="ph-bar-fill" style="width:0.3%; min-width:3px;"></div></div>
+          <div class="ph-bar-val">0.008%</div>
+        </div>
+        <div class="ph-bar-row">
+          <div class="ph-bar-name">arabnews<span class="sub">7M followers</span></div>
+          <div class="ph-bar-track"><div class="ph-bar-fill" style="width:0.3%; min-width:3px;"></div></div>
+          <div class="ph-bar-val">0.007%</div>
+        </div>
+      </div>
+
+      <div class="ph-legend">
+        <span class="lg-item"><span class="lg-dot us"></span>Saudi Insider</span>
+        <span class="lg-item"><span class="lg-dot"></span>News &amp; media peers</span>
+        <span class="lg-item" style="margin-left:auto;">Engagement rate · n=8</span>
+      </div>
+
+      <div class="ph-take">
+        <span class="pin">Takeaway</span>
+        Saudi Insider's engagement rate runs <b>40×+</b> higher than the strongest peer, and over 1,000× higher than legacy outlets.
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ NEWS CURATION PIPELINE / SAUDI INSIDER BOT ============ -->
+<section class="pipe" id="pipeline" data-screen-label="08 News Curation Pipeline">
+  <div class="case-head">
+    <div>
+      <span class="case-tag">SYSTEM · SAUDI INSIDER BOT</span>
+      <h2>News Curation <span class="ital">Pipeline.</span></h2>
+    </div>
+    <p class="lede">An AI-assisted newsroom that runs in the background. Source ingestion, relevance filtering, brand-voice rewriting, and WhatsApp delivery, all wired into one reliable workflow.</p>
+  </div>
+
+  <!-- Horizontal pipeline flow: 5 nodes -->
+  <div class="pipe-flow">
+    <div class="pf-node">
+      <span class="pf-num">01 · Ingest</span>
+      <span class="pf-title">Sources</span>
+      <span class="pf-sub">X monitoring, Telegram channels, RSS feeds, official accounts</span>
+      <span class="pf-arrow">›</span>
+    </div>
+    <div class="pf-node">
+      <span class="pf-num">02 · Filter</span>
+      <span class="pf-title">AI Filtering</span>
+      <span class="pf-sub">Gemini relevance scoring, dedupe, thread stitching</span>
+      <span class="pf-arrow">›</span>
+    </div>
+    <div class="pf-node">
+      <span class="pf-num">03 · Rewrite</span>
+      <span class="pf-title">Editorial Rewrite</span>
+      <span class="pf-sub">Claude brand-voice rewriting, translation, format clean-up</span>
+      <span class="pf-arrow">›</span>
+    </div>
+    <div class="pf-node">
+      <span class="pf-num">04 · Queue</span>
+      <span class="pf-title">Posting Queue</span>
+      <span class="pf-sub">Retry-safe queue, scheduling, rate-limit handling</span>
+      <span class="pf-arrow">›</span>
+    </div>
+    <div class="pf-node">
+      <span class="pf-num">05 · Deliver</span>
+      <span class="pf-title">WhatsApp Delivery</span>
+      <span class="pf-sub">WAHA broadcast, batched updates, daily digests &amp; recaps</span>
+    </div>
+  </div>
+
+  <div class="pipe-body">
+
+    <!-- LEFT: overview + modules + tech highlights -->
+    <div>
+      <div class="pipe-overview">
+        <div class="lab"><span class="gline"></span><span>Project overview</span></div>
+        <p>Saudi Insider Bot is an automated news aggregation and distribution pipeline built to <b>monitor, filter, enrich, and deliver</b> Saudi-related updates around the clock. It works like an AI-assisted newsroom, turning scattered information from X, Telegram, RSS, and official sources into clean, branded WhatsApp updates.</p>
+      </div>
+
+      <div class="pipe-modules">
+        <div class="pm-card">
+          <div class="pm-head"><span class="pm-num">M1</span><span class="pm-title">Data Ingestion</span></div>
+          <div class="pm-list">
+            <span class="pm-tag">X monitoring</span>
+            <span class="pm-tag">Telegram channels</span>
+            <span class="pm-tag">RSS feeds</span>
+          </div>
+        </div>
+        <div class="pm-card">
+          <div class="pm-head"><span class="pm-num">M2</span><span class="pm-title">AI Processing</span></div>
+          <div class="pm-list">
+            <span class="pm-tag">Dedupe</span>
+            <span class="pm-tag">Thread stitching</span>
+            <span class="pm-tag">Filtering</span>
+            <span class="pm-tag">Rewriting</span>
+            <span class="pm-tag">Translation</span>
+          </div>
+        </div>
+        <div class="pm-card">
+          <div class="pm-head"><span class="pm-num">M3</span><span class="pm-title">Orchestration</span></div>
+          <div class="pm-list">
+            <span class="pm-tag">Python</span>
+            <span class="pm-tag">asyncio</span>
+            <span class="pm-tag">APScheduler</span>
+            <span class="pm-tag">SQLite</span>
+          </div>
+        </div>
+        <div class="pm-card">
+          <div class="pm-head"><span class="pm-num">M4</span><span class="pm-title">Delivery</span></div>
+          <div class="pm-list">
+            <span class="pm-tag">WAHA WhatsApp API</span>
+            <span class="pm-tag">Batching</span>
+            <span class="pm-tag">Recaps</span>
+            <span class="pm-tag">Digests</span>
+          </div>
+        </div>
+        <div class="pm-card full">
+          <div class="pm-head"><span class="pm-num">M5</span><span class="pm-title">Monitoring</span></div>
+          <div class="pm-list">
+            <span class="pm-tag">Streamlit dashboard</span>
+            <span class="pm-tag">Logs</span>
+            <span class="pm-tag">Health checks</span>
+            <span class="pm-tag">Graceful shutdowns</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pipe-tech">
+        <div class="lab"><span class="gline"></span><span>Technical highlights</span></div>
+        <ul>
+          <li><b>Multi-LLM strategy.</b> Gemini handles relevance filtering at scale, Claude handles brand-voice rewriting where tone matters.</li>
+          <li><b>Async concurrency.</b> Scraping, AI calls, and posting all run in parallel, keeping latency from source to broadcast low.</li>
+          <li><b>Resilience first.</b> Retries, health checks, database pruning, and safe shutdowns keep the pipeline running unattended.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- RIGHT: two connected phone visuals -->
+    <div class="pipe-visuals">
+      <div class="pipe-phones">
+        <div class="pipe-phone source">
+          <span class="pcaption">Source · 01</span>
+          <img src="assets/saudi-united-telegram.png" alt="Saudi United News Telegram channel showing ingested civil defense update"/>
+          <div class="ptag"><span class="dot"></span>Telegram ingest · @saudidcd</div>
+        </div>
+
+        <div class="pipe-link" aria-hidden="true">
+          <svg viewBox="0 0 120 120">
+            <defs>
+              <linearGradient id="plg" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#FF7A45"/>
+                <stop offset="50%" stop-color="#FF3D7F"/>
+                <stop offset="100%" stop-color="#9D4EDD"/>
+              </linearGradient>
+            </defs>
+            <path d="M 8 30 C 50 30, 70 90, 112 90" fill="none" stroke="url(#plg)" stroke-width="1.4" stroke-dasharray="4 5" opacity=".75"/>
+          </svg>
+          <div class="pl-pill"><span class="dot"></span>AI pipeline</div>
+        </div>
+
+        <div class="pipe-phone delivery">
+          <span class="pcaption">Delivery · 05</span>
+          <img src="assets/saudi-insider-whatsapp.png" alt="Saudi Insider WhatsApp channel showing branded news update delivered to subscribers"/>
+          <div class="ptag"><span class="dot"></span>WhatsApp broadcast · Saudi Insider</div>
+        </div>
+      </div>
+
+      <div class="pipe-vis-foot">
+        <div class="vfi">
+          <span class="lab">Source</span>
+          <span class="desc">Raw signal from <b>X, Telegram, RSS</b>, and official accounts, ingested continuously.</span>
+        </div>
+        <div class="vfi">
+          <span class="lab">Delivery</span>
+          <span class="desc">Rewritten, branded updates pushed to the <b>Saudi Insider</b> WhatsApp audience.</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ ARTWORK & CREATIVE BEGINNINGS ============ -->
+<section class="block" id="artwork" data-screen-label="08 Artwork">
+  <div class="section-no"><b>05</b> &nbsp; ARTWORK</div>
+  <div class="section-head">
+    <div>
+      <h2>Artwork <span class="ital">&amp; Creative</span><br/>Beginnings.</h2>
+    </div>
+    <div class="lede">
+      <p>Before the media work, there was art. A YouTube channel run from a desk during lockdown that quietly became the foundation for everything that came after.</p>
+    </div>
+  </div>
+
+  <div class="art-hero">
+    <div class="art-text">
+      <p>During the COVID-19 lockdown, I started a YouTube channel called <b>Ryanz Art</b> as a space to share my drawings and practice visual storytelling.</p>
+      <p>What began as a personal hobby slowly became something more serious. It taught me consistency, patience, presentation, and the discipline of creating for an audience, even when everything started from a desk at home.</p>
+      <p>That same creative instinct eventually moved beyond paper into photography, videography, editing, and digital media. The tools changed, but the habit stayed the same: observe, create, publish, and keep improving.</p>
+    </div>
+    <div class="art-feature">
+      <img src="assets/art-04-ryan-holding.png" alt="Ryan Benny with one of his early portraits"/>
+      <div class="ftag"><span class="dot"></span>Self-portrait era · 2020</div>
+    </div>
+  </div>
+
+  <a class="yt-bar" href="https://www.youtube.com/@RyanzArt/featured" target="_blank" rel="noopener">
+    <div class="yt-mark">
+      <svg viewBox="0 0 54 38" aria-hidden="true">
+        <rect width="54" height="38" rx="8" fill="#FF0000"/>
+        <polygon points="22,12 22,26 34,19" fill="#fff"/>
+      </svg>
+    </div>
+    <div class="yt-meta">
+      <div class="yt-name">Ryanz Art</div>
+      <div class="yt-sub">YouTube channel · portraits, sketches, process</div>
+    </div>
+    <div class="yt-cta">Watch the channel →</div>
+  </a>
+
+  <div class="art-grid">
+    <div class="art-tile"><img src="assets/art-01-spiderman.png" alt="Pencil portrait, Spider-Man study"/></div>
+    <div class="art-tile"><img src="assets/art-02-beard.png" alt="Ink portrait in progress"/></div>
+    <div class="art-tile"><img src="assets/art-03-signature.png" alt="Ryanz Art channel signature"/></div>
+    <div class="art-tile"><img src="assets/art-05-paints.png" alt="Watercolour tubes and a work in progress"/></div>
+    <div class="art-tile"><img src="assets/art-06-color-portrait.png" alt="Colour-pencil portrait, mid-render"/></div>
+    <div class="art-tile"><img src="assets/art-07-girl-portrait.png" alt="Graphite portrait study"/></div>
+  </div>
+</section>
+
+<!-- ============ INDUSTRY EXPERIENCE & CREATIVE COLLABORATIONS ============ -->
+<section class="block" id="experience" data-screen-label="09 Industry Experience">
+  <div class="section-no"><b>06</b> &nbsp; INDUSTRY EXPERIENCE</div>
+  <div class="section-head">
+    <div>
+      <span class="eyebrow">Hands-on, on set, on the ground</span>
+      <h2>Industry Experience &amp; Creative Collaborations.</h2>
+    </div>
+    <p class="lede">Through digital media and visual storytelling, I have worked across entertainment coverage, campaign shoots, pop-up activations, and brand-led content. A short tour of the rooms I have been in, the projects I have shaped, and the teams who let me hold the camera.</p>
+  </div>
+
+  <!-- 1 :: RACE4WOMEN — feature image + intro caption -->
+  <div class="ix-feature">
+    <figure class="ix-hero">
+      <img src="assets/exp-01-race4women.png" alt="#RACE4WOMEN [Challenge Me] campaign visual"/>
+      <figcaption>
+        <span class="ix-tag"><span class="dot"></span>Feature · 2024</span>
+        <span class="ix-cap-title">#RACE4WOMEN <span class="ital">[Challenge Me]</span></span>
+        <span class="ix-cap-sub">Sebastian Vettel's grassroots karting initiative in Jeddah, focused on empowering young women through motorsport, training, and confidence building.</span>
+      </figcaption>
+    </figure>
+
+    <aside class="ix-body">
+      <p class="ix-lead">My experience includes work connected to <b>MDLBEAST Radio</b>, where I contributed to videography and editing projects around Balad Beast and regional entertainment coverage.</p>
+      <p>I was also involved in <b>Race4Women</b>, gaining a close look at how a meaningful campaign comes together on the ground, from the paddock and the pit wall to the final cut.</p>
+      <p>Sebastian Vettel's grassroots karting initiative in Jeddah, Saudi Arabia, focused on empowering young women through motorsport, hands-on training, mentorship, and confidence-building opportunities. The initiative aimed to make motorsport more accessible to local women by creating a supportive environment where participants could experience professional karting, teamwork, discipline, and personal development while encouraging greater female participation in the sport and creative industries connected to it.</p>
+      <div class="ix-meta-rows">
+        <div class="ix-row"><span class="k">Disciplines</span><span class="v">Videography · Editing · Coverage</span></div>
+        <div class="ix-row"><span class="k">Footprint</span><span class="v">Jeddah · Riyadh</span></div>
+        <div class="ix-row"><span class="k">Format</span><span class="v">Field shoots · Pop-ups · Campaign</span></div>
+      </div>
+    </aside>
+  </div>
+
+  <!-- 2 :: MDLBEAST + RACE4WOMEN supporting trio -->
+  <div class="ix-trio">
+    <div class="ix-trio-head">
+      <span class="ix-num">01</span>
+      <div>
+        <h3>Race4Women &amp; MDLBEAST Radio.</h3>
+        <p>With guidance and support from <b>Rohit Jayakaran</b>, Head of Radio at MDLBEAST Radio, I gained early exposure to large-scale creative and media environments. This later opened opportunities to work on projects connected to <b>MBC Group Loud</b> and other regional entertainment initiatives.</p>
+      </div>
+    </div>
+    <div class="ix-trio-grid">
+      <figure class="ix-card r4w">
+        <img src="assets/exp-05-ryan-race4women.png" alt="Ryan Benny on set at Race4Women with Sebastian Vettel"/>
+        <figcaption><span class="ix-card-loc">Race4Women · Jeddah</span><span class="ix-card-meta">On set with Sebastian Vettel</span></figcaption>
+      </figure>
+      <figure class="ix-card studio">
+        <img src="assets/exp-06-mdlbeast-setup.png" alt="MDLBEAST Radio broadcast setup"/>
+        <figcaption><span class="ix-card-loc">MDLBEAST Radio · Studio</span><span class="ix-card-meta">Broadcast desk &amp; edit station</span></figcaption>
+      </figure>
+      <figure class="ix-card balad">
+        <img src="assets/exp-07-ryan-rohit.png" alt="Ryan Benny with Rohit Jayakaran, Head of Radio at MDLBEAST Radio"/>
+        <figcaption><span class="ix-card-loc">Balad Beast · Jeddah</span><span class="ix-card-meta">With Rohit Jayakaran, Head of Radio</span></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <!-- 3 :: VASELINE x ROW campaign -->
+  <div class="ix-campaign">
+    <div class="ix-camp-head">
+      <span class="ix-num">02</span>
+      <div>
+        <h3>Vaseline <span class="x">×</span> ROW.</h3>
+        <p>Alongside media production, I have worked on pop-up events, brand collaborations, campaign coverage, and promotional activations, contributing through videography, editing, creative storytelling, and digital content production. This activation between <b>Vaseline Arabia</b> and <b>ROW Specialty Coffee</b> is one example of that work in the field.</p>
+      </div>
+      <div class="ix-camp-chips">
+        <span class="chip">Pop-up</span>
+        <span class="chip">Campaign shoot</span>
+        <span class="chip">Brand-led content</span>
+      </div>
+    </div>
+
+    <div class="ix-camp-grid">
+      <figure class="ix-camp-tile a">
+        <img src="assets/exp-02-vaseline-row-a.png" alt="Vaseline x ROW barista with branded apron, on shift at ROW Cafe"/>
+        <figcaption><span>Vaseline × ROW · Cafe activation</span></figcaption>
+      </figure>
+      <figure class="ix-camp-tile b">
+        <img src="assets/exp-03-vaseline-row-b.png" alt="Vaseline x ROW storefront detail"/>
+        <figcaption><span>Branded storefront · Obhur, Jeddah</span></figcaption>
+      </figure>
+      <figure class="ix-camp-tile c">
+        <img src="assets/exp-04-vaseline-row-poster.png" alt="Gluta-Hya, Vaseline x ROW launch poster"/>
+        <figcaption><span>Gluta-Hya launch · Key art</span></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <!-- 4 :: PARTNERS / AGENCY STRIP -->
+  <div class="ix-partners">
+    <div class="ix-part-head">
+      <span class="eyebrow">Collaborators · Creative teams · Agencies</span>
+      <p>I have also collaborated with creative teams and agencies including <b>Birnan &amp; Brond</b>, <b>WLDD Private Limited</b>, <b>Mumkin</b>, <b>MDLBEAST</b>, and other regional marketing and media teams.</p>
+    </div>
+    <div class="ix-logo-strip">
+      <div class="lg dark"><div class="logo-mark"><img src="assets/logo-mdlbeast.png" alt="MDLBEAST"/></div><span>MDLBEAST</span></div>
+      <div class="lg light"><div class="logo-mark"><img src="assets/logo-birnan-brond.png" alt="Birnan &amp; Brond"/></div><span>Birnan &amp; Brond</span></div>
+      <div class="lg light"><div class="logo-mark"><img src="assets/logo-wldd.png" alt="WLDD Private Limited"/></div><span>WLDD Pvt. Ltd.</span></div>
+      <div class="lg light"><div class="logo-mark"><img src="assets/logo-mumkin.png" alt="Mumkin"/></div><span>Mumkin</span></div>
+      <div class="lg dark"><div class="logo-mark"><img src="assets/logo-mbc-loud.png" alt="MBC Loud FM"/></div><span>MBC Loud FM</span></div>
+    </div>
+    <div class="ix-partners-foot">Also: <b>Vaseline Arabia</b> · <b>ROW Cafe</b> · regional marketing &amp; media teams</div>
+  </div>
+</section>
+
+<!-- ============ KEY ACHIEVEMENTS ============ -->
+<section class="block" id="achievements" data-screen-label="10 Key Achievements">
+  <div class="section-no"><b>07</b> &nbsp; KEY ACHIEVEMENTS</div>
+  <div class="section-head">
+    <div>
+      <span class="eyebrow">Selected highlights</span>
+      <h2>Acknowledged across <span class="ital">government</span>, diplomatic, and global media.</h2>
+    </div>
+    <p class="lede">A short list of the moments and people that have given the work weight beyond the feed.</p>
+  </div>
+
+  <div class="ach-grid">
+    <div class="ach">
+      <div class="n">01.</div>
+      <div>
+        <div class="name">HH Prince Badr bin Abdullah Al Saud</div>
+        <div class="desc">Minister of Culture, Kingdom of Saudi Arabia. Appreciation for the network's contribution to modern Saudi media.</div>
+        <div class="ctx">Government · KSA</div>
+      </div>
+    </div>
+    <div class="ach">
+      <div class="n">02.</div>
+      <div>
+        <div class="name">EU Special Representative for the Gulf</div>
+        <div class="desc">Former Deputy Prime Minister of Italy. Direct engagement and acknowledgement of the work.</div>
+        <div class="ctx">Diplomatic · EU</div>
+      </div>
+    </div>
+    <div class="ach">
+      <div class="n">03.</div>
+      <div>
+        <div class="name">Chairman, Saudi Cricket Board</div>
+        <div class="desc">Recognition for media and youth engagement initiatives within the kingdom's sporting ecosystem.</div>
+        <div class="ctx">Sport · KSA</div>
+      </div>
+    </div>
+    <div class="ach">
+      <div class="n">04.</div>
+      <div>
+        <div class="name">BBC Arabic</div>
+        <div class="desc">Direct media interest and communication regarding the network's coverage of regional events.</div>
+        <div class="ctx">Media · Global</div>
+      </div>
+    </div>
+    <div class="ach">
+      <div class="n">05.</div>
+      <div>
+        <div class="name">Top 1% creator benchmark</div>
+        <div class="desc">Two accounts running engagement rates above the global top 1% Instagram benchmark, sustained across roughly 30 posts each.</div>
+        <div class="ctx">Performance · IG</div>
+      </div>
+    </div>
+    <div class="ach">
+      <div class="n">06.</div>
+      <div>
+        <div class="name">Regional industry leaders</div>
+        <div class="desc">Acknowledged by senior figures across Saudi Arabia and the GCC media and entertainment sector.</div>
+        <div class="ctx">Industry · GCC</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="num-strip">
+    <div class="ni">
+      <div class="lab">Total audience</div>
+      <div class="num">120K+</div>
+      <div class="desc">Followers across the network</div>
+    </div>
+    <div class="ni">
+      <div class="lab">Monthly reach</div>
+      <div class="num">28M+</div>
+      <div class="desc">People reached every month</div>
+    </div>
+    <div class="ni">
+      <div class="lab">Flagship views, 30d</div>
+      <div class="num">2.1M</div>
+      <div class="desc">Saudi United, last 30 days</div>
+    </div>
+    <div class="ni">
+      <div class="lab">Broadcast members</div>
+      <div class="num">4,600</div>
+      <div class="desc">Opt-in for major-event coverage</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT / CLOSING ============ -->
+<section class="contact" id="contact" data-screen-label="11 Closing">
+  <div class="glow"></div>
+  <span class="eyebrow center"><span class="gline"></span> Thanks for reading <span class="gline"></span></span>
+  <p class="closing">If anything in here lined up with what you are working on, I would be glad to hear from you. Press, partnerships, editorial commissions, or a coffee in Jeddah, all welcome.</p>
+  <h2>Let's <span class="ital">talk</span>.</h2>
+
+  <a class="cta" href="mailto:ryanbenny2006@gmail.com">
+    Start a conversation
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+  </a>
+
+  <div class="three">
+    <div class="col">
+      <div class="lab">Email</div>
+      <div class="val">ryanbenny2006@gmail.com</div>
+    </div>
+    <div class="col">
+      <div class="lab">Instagram</div>
+      <div class="val">@46an__</div>
+    </div>
+    <div class="col">
+      <div class="lab">Location</div>
+      <div class="val">Jeddah, KSA</div>
+    </div>
+  </div>
+</section>
+
+<footer class="site">
+  <span class="rb-mark">ryan <span class="g">benny</span><span class="dot"></span></span>
+  <span>© 2026 Ryan Benny · Portfolio</span>
+  <span>Jeddah, KSA</span>
+</footer>
+
+<script>
+  document.querySelectorAll('nav.top .links a').forEach(a=>{
+    a.addEventListener('click', e=>{
+      const id = a.getAttribute('href');
+      if (!id || id[0] !== '#') return;
+      const el = document.querySelector(id);
+      if (!el) return;
+      e.preventDefault();
+      window.scrollTo({ top: el.offsetTop - 60, behavior:'smooth' });
+    });
+  });
+</script>
+</body>
+</html>

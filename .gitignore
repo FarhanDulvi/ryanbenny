@@ -1,0 +1,15 @@
+# Local handoff source bundle (not needed for deployment)
+_handoff/
+
+# Vercel
+.vercel/
+
+# OMC working dir
+.omc/
+
+# Editor / OS
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.log
