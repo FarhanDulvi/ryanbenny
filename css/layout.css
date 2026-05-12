@@ -1,0 +1,444 @@
+/* ============================================================
+   LAYOUT
+   Top-level page structure: nav bar, hero, generic section
+   shells, the contact closing block, and the footer.
+   Component-level pieces (cards, charts, brand tiles) live
+   in components.css. Mobile overrides live in responsive.css.
+   ============================================================ */
+
+
+/* ============ TOP NAVIGATION ============ */
+
+nav.top{
+  position: fixed; top:0; left:0; right:0; z-index: 50;
+  padding: 18px var(--pad);
+  display: flex; align-items: center; justify-content: space-between;
+  /* Frosted-glass effect: dark gradient + blur over scrolling content. */
+  background: linear-gradient(180deg, rgba(10,10,10,.85), rgba(10,10,10,.55) 70%, transparent);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(255,255,255,.04);
+}
+
+/* The "ryan benny ." wordmark, used in nav and footer. */
+.rb-mark{
+  font-family:'Instrument Serif', serif; font-style: italic; font-weight: 400;
+  font-size: 24px; letter-spacing: -.01em; line-height: 1;
+  display: inline-flex; align-items: baseline; gap: 2px;
+}
+.rb-mark .g{
+  background: var(--grad);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.rb-mark .dot{
+  width: 7px; height: 7px; border-radius: 999px;
+  background: #FF3D7F;
+  display: inline-block; margin-left: 4px; transform: translateY(-2px);
+}
+
+nav.top .links{ display: flex; gap: 30px; }
+nav.top .links a{
+  text-decoration: none; font-size: 13px; font-weight: 500;
+  color: var(--fg-2); letter-spacing: .02em;
+  transition: color .2s;
+}
+nav.top .links a:hover{ color: var(--fg); }
+
+nav.top .meta{
+  font-family:'JetBrains Mono', monospace;
+  font-size: 11px; color: var(--fg-3); letter-spacing: .18em;
+}
+
+/* "Get in touch" pill button in the nav. */
+nav.top .nav-cta{
+  text-decoration: none; padding: 8px 14px; border-radius: 999px;
+  border: 1px solid var(--border-2); background: rgba(255,255,255,.02);
+  font-family:'Inter', sans-serif;
+  font-size: 12px; font-weight: 500; letter-spacing: .04em;
+  color: var(--fg);
+  transition: border-color .2s, background .2s;
+  cursor: pointer;
+}
+nav.top .nav-cta:hover{
+  border-color: #FF3D7F;
+  background: rgba(255,61,127,.08);
+}
+
+
+/* ============ HERO ============ */
+
+.hero{
+  position: relative;
+  padding: 84px var(--pad) 40px;
+  overflow: hidden;
+}
+/* Two big radial "glow" backgrounds behind the hero. Decorative only. */
+.hero .glow-a{
+  position: absolute; top: -280px; right: -200px;
+  width: 900px; height: 900px;
+  background: radial-gradient(circle, rgba(255,61,127,.26), rgba(157,78,221,.14) 38%, transparent 62%);
+  filter: blur(60px); pointer-events: none; z-index: 0;
+}
+.hero .glow-b{
+  position: absolute; bottom: -360px; left: -220px;
+  width: 1000px; height: 1000px;
+  background: radial-gradient(circle, rgba(255,122,69,.20), rgba(255,61,127,.08) 40%, transparent 65%);
+  filter: blur(60px); pointer-events: none; z-index: 0;
+}
+.hero > *{ position: relative; z-index: 1; }
+
+.hero-grid{
+  display: grid;
+  grid-template-columns: 1.45fr .85fr;
+  gap: 56px; align-items: center;
+}
+
+.hero h1{
+  font-family:'Inter', sans-serif; font-weight: 800;
+  font-size: clamp(48px, 7vw, 100px);
+  line-height: .94; letter-spacing: -.045em;
+  margin: 14px 0 0;
+  white-space: nowrap;        /* keeps "Ryan Benny." on one line on desktop */
+}
+.hero h1 .last{
+  font-family:'Instrument Serif', serif;
+  font-style: italic; font-weight: 400; letter-spacing: -.02em;
+  background: var(--grad);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero .role{
+  margin-top: 18px; color: var(--fg);
+  font-size: clamp(17px, 1.35vw, 21px); line-height: 1.55;
+  font-weight: 400; max-width: 560px;
+}
+.hero .role span.thin{ color: var(--fg-2); font-weight: 300; }
+
+.hero .sub{
+  margin-top: 14px; color: var(--fg-2);
+  font-size: 15.5px; line-height: 1.65;
+  max-width: 560px; font-weight: 300;
+}
+
+/* The portrait photo on the right of the hero. */
+.hero-portrait{
+  position: relative; aspect-ratio: 4/5;
+  border-radius: 8px; overflow: hidden;
+  border: 1px solid var(--border-2);
+  background: #000;
+  box-shadow: 0 30px 80px -30px rgba(0,0,0,.7),
+              0 0 0 1px rgba(255,61,127,.08);
+}
+/* Gradient outline trick (border-image alternative). */
+.hero-portrait::before{
+  content:""; position: absolute; inset: 0;
+  border-radius: 8px; background: var(--grad); padding: 1px;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude;
+  opacity: .35; pointer-events: none; z-index: 3;
+}
+.hero-portrait img{
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center 18%;
+}
+/* Small floating "Ryan Benny · Jeddah" tag on the photo. */
+.hero-portrait .tag{
+  position: absolute; left: 14px; bottom: 14px; z-index: 4;
+  font-family:'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: .22em; text-transform: uppercase;
+  background: rgba(10,10,10,.7);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  padding: 7px 11px; border-radius: 3px; color: #fff;
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.hero-portrait .tag .dot{
+  width: 6px; height: 6px; border-radius: 999px; background: #FF3D7F;
+}
+
+/* The four-column "strip" of mini-stats under the hero, if used. */
+.hero .strip{
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  padding-top: 24px; border-top: 1px solid var(--border);
+  margin-top: 36px;
+}
+.hero .strip .item .lab{
+  font-family:'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: .24em;
+  color: var(--fg-3); text-transform: uppercase;
+}
+.hero .strip .item .val{
+  font-weight: 500; font-size: 15px;
+  margin-top: 6px; letter-spacing: -.005em;
+}
+.hero .strip .item .val.big{
+  font-family:'Instrument Serif', serif;
+  font-style: italic; font-size: 28px; font-weight: 400;
+  letter-spacing: -.02em;
+  background: var(--grad);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+
+/* ============ GENERIC SECTION SHELL ============
+   Every "<section class='block'>" uses this padding + top border. */
+
+section.block{
+  padding: 56px var(--pad) 60px;
+  position: relative;
+}
+section.block + section.block,
+section.case  + section.block,
+section.block + section.case{
+  border-top: 1px solid var(--border);
+}
+
+/* Two-column header at the top of each section: title left, lede right. */
+.section-head{
+  display: grid; grid-template-columns: 1.3fr 1fr;
+  gap: 48px; align-items: end;
+  margin-bottom: 32px;
+}
+.section-head h2{
+  font-family:'Inter', sans-serif; font-weight: 800;
+  font-size: clamp(32px, 4.2vw, 60px);
+  line-height: 1.02; letter-spacing: -.04em;
+  margin: 12px 0 0;
+}
+.section-head h2 .ital{
+  font-family:'Instrument Serif', serif;
+  font-style: italic; font-weight: 400; letter-spacing: -.01em;
+  background: var(--grad);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.section-head .lede{
+  color: var(--fg-2); font-size: 16px; line-height: 1.65;
+  font-weight: 300; max-width: 460px;
+}
+.section-head .lede b{ color: var(--fg); font-weight: 600; }
+
+/* Section number badge in the top-left corner ("01  ABOUT", etc). */
+.section-no{
+  position: absolute; top: 32px; left: var(--pad);
+  font-family:'JetBrains Mono', monospace;
+  font-size: 11px; letter-spacing: .28em;
+  color: var(--fg-3);
+}
+.section-no b{ color: var(--fg); font-weight: 500; }
+
+
+/* ============ CASE-STUDY SECTION SHELL ============ */
+
+.case{
+  padding: 64px var(--pad);
+  position: relative;
+  border-top: 1px solid var(--border);
+}
+.case .case-head{
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 48px; margin-bottom: 36px; align-items: end;
+}
+.case .case-tag{
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 6px 12px; border-radius: 999px;
+  background: linear-gradient(95deg,
+    rgba(255,122,69,.16),
+    rgba(255,61,127,.18) 50%,
+    rgba(157,78,221,.16));
+  border: 1px solid rgba(255,61,127,.35);
+  font-family:'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: .24em; text-transform: uppercase;
+  color: #fff;
+}
+.case .case-tag::before{
+  content:""; width: 6px; height: 6px; border-radius: 999px;
+  background: #FF3D7F; box-shadow: 0 0 10px #FF3D7F;
+}
+.case h2.case-title{
+  font-family:'Inter', sans-serif; font-weight: 800;
+  font-size: clamp(38px, 5.4vw, 80px);
+  line-height: .98; letter-spacing: -.04em; margin: 22px 0 0;
+}
+.case h2.case-title .ital{
+  font-family:'Instrument Serif', serif;
+  font-style: italic; font-weight: 400; letter-spacing: -.01em;
+  background: var(--grad);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.case .case-meta{
+  font-family:'JetBrains Mono', monospace;
+  font-size: 11px; letter-spacing: .16em;
+  color: var(--fg-2); text-transform: uppercase;
+  margin-bottom: 0;
+  display: flex; flex-direction: column; gap: 10px; align-items: flex-start;
+}
+.case .case-meta .row{ display: flex; gap: 14px; align-items: center; }
+.case .case-meta .k  { color: var(--fg-3); min-width: 90px; }
+
+/* Two-column body inside a case study (text left, proof right). */
+.case-body{
+  display: grid; grid-template-columns: 1.05fr 1fr;
+  gap: 64px; align-items: start;
+}
+.case-body.reverse{ grid-template-columns: 1fr 1.05fr; }
+
+
+/* ============ PERFORMANCE-PATTERNS SECTION SHELL ============ */
+
+.perf{
+  padding: 56px var(--pad) 60px;
+  position: relative;
+  border-top: 1px solid var(--border);
+}
+.perf .case-head{
+  display: grid; grid-template-columns: 1.3fr 1fr;
+  gap: 48px; align-items: end; margin-bottom: 36px;
+}
+.perf .case-head h2{
+  font-family:'Inter', sans-serif; font-weight: 800;
+  font-size: clamp(30px, 3.6vw, 52px);
+  line-height: 1.04; letter-spacing: -.04em; margin: 10px 0 0;
+}
+.perf .case-head h2 .ital{
+  font-family:'Instrument Serif', serif;
+  font-style: italic; font-weight: 400; letter-spacing: -.01em;
+  background: var(--grad);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.perf .case-head .lede{
+  color: var(--fg-2); font-size: 15.5px; line-height: 1.65;
+  font-weight: 300; max-width: 480px; margin: 0;
+}
+
+
+/* ============ NEWS PIPELINE SECTION SHELL ============ */
+
+.pipe{
+  padding: 64px var(--pad) 72px;
+  position: relative;
+  border-top: 1px solid var(--border);
+  background: linear-gradient(180deg, var(--bg) 0%, #0c0c0c 100%);
+}
+.pipe .case-head{
+  display: grid; grid-template-columns: 1.3fr 1fr;
+  gap: 48px; align-items: end; margin-bottom: 40px;
+}
+.pipe .case-head h2{
+  font-family:'Inter', sans-serif; font-weight: 800;
+  font-size: clamp(30px, 3.8vw, 56px);
+  line-height: 1.04; letter-spacing: -.04em; margin: 10px 0 0;
+}
+.pipe .case-head h2 .ital{
+  font-family:'Instrument Serif', serif;
+  font-style: italic; font-weight: 400; letter-spacing: -.01em;
+  background: var(--grad);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.pipe .case-head .lede{
+  color: var(--fg-2); font-size: 15.5px; line-height: 1.65;
+  font-weight: 300; max-width: 440px; margin: 0;
+}
+
+/* Two-column body inside the pipeline section. */
+.pipe-body{
+  display: grid; grid-template-columns: 1.35fr 1fr;
+  gap: 36px; align-items: start;
+}
+
+
+/* ============ CONTACT / CLOSING ============ */
+
+.contact{
+  position: relative;
+  padding: 84px var(--pad) 64px;
+  overflow: hidden;
+  text-align: center;
+  border-top: 1px solid var(--border);
+}
+.contact .glow{
+  position: absolute; top: -300px; left: 50%; transform: translateX(-50%);
+  width: 1100px; height: 1000px;
+  background: radial-gradient(circle, rgba(255,61,127,.22), rgba(157,78,221,.10) 40%, transparent 65%);
+  filter: blur(60px); pointer-events: none; z-index: 0;
+}
+.contact > *{ position: relative; z-index: 1; }
+
+.contact .closing{
+  font-family:'Instrument Serif', serif;
+  font-style: italic; font-size: clamp(20px, 2vw, 26px);
+  color: var(--fg-2); max-width: 680px;
+  margin: 20px auto 0; line-height: 1.45;
+}
+.contact h2{
+  font-family:'Inter', sans-serif; font-weight: 800;
+  font-size: clamp(40px, 6.2vw, 92px);
+  line-height: .96; letter-spacing: -.045em;
+  margin: 18px auto 0; max-width: 1100px;
+}
+.contact h2 .ital{
+  font-family:'Instrument Serif', serif;
+  font-style: italic; font-weight: 400; letter-spacing: -.02em;
+  background: var(--grad);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Big pink-gradient call-to-action button. */
+.contact .cta{
+  display: inline-flex; align-items: center; gap: 14px;
+  margin-top: 36px; padding: 20px 34px; border-radius: 999px;
+  background: var(--grad); color: #0A0A0A;
+  font-weight: 700; text-decoration: none;
+  font-size: 15px; letter-spacing: -.01em;
+  transition: transform .25s, box-shadow .25s;
+  box-shadow: 0 24px 60px -20px rgba(255,61,127,.5);
+}
+.contact .cta:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 30px 70px -20px rgba(255,61,127,.65);
+}
+.contact .cta svg{ width: 18px; height: 18px; }
+
+/* Three-column contact footer (email / instagram / location). */
+.contact .three{
+  margin: 48px auto 0;
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  max-width: 980px;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.contact .three .col{
+  padding: 22px 20px;
+  border-right: 1px solid var(--border);
+}
+.contact .three .col:last-child{ border-right: none; }
+.contact .three .col .lab{
+  font-family:'JetBrains Mono', monospace;
+  font-size: 11px; letter-spacing: .26em;
+  text-transform: uppercase; color: var(--fg-3);
+  margin-bottom: 10px;
+}
+.contact .three .col .val{
+  font-weight: 500; font-size: 16px; letter-spacing: -.01em;
+}
+
+
+/* ============ SITE FOOTER ============ */
+
+footer.site{
+  padding: 24px var(--pad);
+  border-top: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 24px; flex-wrap: wrap;
+  font-family:'JetBrains Mono', monospace;
+  font-size: 11px; letter-spacing: .22em;
+  color: var(--fg-3); text-transform: uppercase;
+}
+footer.site .rb-mark{ font-size: 20px; }

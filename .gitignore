@@ -1,11 +1,14 @@
-# Local handoff source bundle (not needed for deployment)
-_handoff/
-
 # Vercel
 .vercel/
 
-# OMC working dir
+# Tooling working dirs
+.claude/
 .omc/
+
+# Node (in case dev tooling is re-installed later)
+node_modules/
+package-lock.json
+screenshots/
 
 # Editor / OS
 .DS_Store

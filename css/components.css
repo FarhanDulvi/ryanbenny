@@ -1,0 +1,1273 @@
+/* ============================================================
+   COMPONENTS
+   Reusable building blocks and section-specific component
+   pieces: cards, chips, brand tiles, proof images, charts,
+   the pipeline diagram, the industry-experience tiles, etc.
+   No global rules and no @media queries in this file.
+   ============================================================ */
+
+
+/* ============ ABOUT — bio column + quick facts card ============ */
+
+.about-grid{
+  display: grid; grid-template-columns: 1.5fr 1fr;
+  gap: 56px; align-items: start;
+}
+.about-grid .bio p{
+  color: var(--fg-2); font-size: 17px; line-height: 1.75;
+  max-width: 640px; font-weight: 300; margin: 0;
+}
+.about-grid .bio p + p{ margin-top: 20px; }
+.about-grid .bio p b{ color: var(--fg); font-weight: 600; }
+.about-grid .bio .signature{
+  margin-top: 24px;
+  display: inline-flex; align-items: center; gap: 14px;
+  font-family:'Instrument Serif', serif; font-style: italic;
+  font-size: 24px; letter-spacing: -.01em;
+}
+.about-grid .bio .signature::before{
+  content:""; width: 42px; height: 1px; background: var(--grad);
+}
+
+/* "Quick facts" card on the right side of About. */
+.quick-card{
+  border: 1px solid var(--border); border-radius: 6px;
+  background: var(--surface);
+  padding: 30px 30px 14px;
+  position: relative; overflow: hidden;
+}
+/* Thin gradient bar across the top of the card. */
+.quick-card::before{
+  content:""; position: absolute; top: 0; left: 0; right: 0;
+  height: 2px; background: var(--grad);
+}
+.quick-card .gh{
+  font-family:'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: .28em;
+  color: var(--fg-3); text-transform: uppercase;
+}
+.quick-card h3{
+  font-family:'Inter', sans-serif; font-weight: 700;
+  font-size: 20px; letter-spacing: -.02em;
+  margin: 6px 0 22px;
+}
+.quick-card .row{
+  display: flex; justify-content: space-between; align-items: baseline;
+  padding: 14px 0; border-top: 1px solid var(--border);
+  font-size: 14px;
+}
+.quick-card .row .k{
+  font-family:'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: .2em;
+  text-transform: uppercase; color: var(--fg-3);
+}
+.quick-card .row .v{ font-weight: 500; color: var(--fg); }
+
+
+/* ============ EDUCATION CARD ============ */
+
+.edu-card{
+  position: relative;
+  border: 1px solid var(--border); border-radius: 10px;
+  background: linear-gradient(160deg, rgba(255,255,255,.02), rgba(255,255,255,0) 60%), var(--surface);
+  padding: 36px 40px;
+  overflow: hidden;
+}
+.edu-card::before{
+  content:""; position: absolute; top: 0; left: 0; right: 0;
+  height: 2px; background: var(--grad);
+}
+.edu-head{
+  display: grid; grid-template-columns: 1fr auto;
+  gap: 32px; align-items: start;
+  padding-bottom: 24px; border-bottom: 1px solid var(--border);
+}
+.edu-head .school-tag{
+  font-family:'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: .26em;
+  text-transform: uppercase; color: var(--fg-3);
+  margin-bottom: 10px;
+}
+.edu-head h3{
+  font-family:'Inter', sans-serif; font-weight: 700;
+  font-size: clamp(22px, 2.2vw, 28px);
+  letter-spacing: -.025em; line-height: 1.18; margin: 0;
+}
+.edu-head .deg{
+  margin-top: 10px; color: var(--fg-2);
+  font-size: 15px; line-height: 1.5; font-weight: 300;
+}
+.edu-head .deg b{ color: var(--fg); font-weight: 600; }
+/* Date pill on the right side of the education header. */
+.edu-head .dates{
+  font-family:'JetBrains Mono', monospace;
+  font-size: 11px; letter-spacing: .18em; text-transform: uppercase;
+  padding: 8px 12px;
+  border: 1px solid rgba(255,61,127,.32);
+  border-radius: 999px;
+  color: #fff; white-space: nowrap;
+  background: linear-gradient(95deg,
+    rgba(255,122,69,.10), rgba(255,61,127,.12), rgba(157,78,221,.10));
+}
+.edu-focus{
+  display: flex; flex-wrap: wrap; align-items: center; gap: 10px 8px;
+  padding: 20px 0 22px;
+  border-bottom: 1px solid var(--border);
+}
+.edu-focus .lab{
+  font-family:'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: .24em;
+  text-transform: uppercase; color: var(--fg-3);
+  margin-right: 6px;
+}
+
+/* Generic small pill ("Physics", "Chemistry", etc). */
+.chip{
+  font-family:'Inter', sans-serif;
+  font-size: 12.5px; font-weight: 500; letter-spacing: -.005em;
+  padding: 6px 12px;
+  border: 1px solid var(--border-2); border-radius: 999px;
+  background: rgba(255,255,255,.015);
+  color: var(--fg);
+}
+
+.edu-cols{
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 40px; padding: 24px 0 6px;
+}
+.edu-col .col-head{
+  display: flex; align-items: center; gap: 10px;
+  font-family:'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: .28em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.edu-col .col-head .gline{ width: 22px; height: 1px; background: var(--grad); }
+.edu-col .col-head span{
+  background: var(--grad);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 600;
+}
+
+.edu-list{
+  list-style: none; margin: 0; padding: 0;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.edu-list li{
+  color: var(--fg-2); font-size: 14.5px; line-height: 1.5; font-weight: 300;
+  padding-left: 18px; position: relative;
+}
+.edu-list li::before{
+  content:""; position: absolute; left: 0; top: 9px;
+  width: 6px; height: 6px; border-radius: 999px;
+  background: var(--grad);
+}
+.edu-list li b{ color: var(--fg); font-weight: 600; }
+/* Awards list: pink glowing bullets instead of gradient. */
+.edu-list.awards li::before{
+  background: #FF3D7F; box-shadow: 0 0 8px rgba(255,61,127,.6);
+}
+.edu-list a{
+  color: var(--fg-3); text-decoration: none;
+  border-bottom: 1px dashed var(--fg-4);
+  font-family:'JetBrains Mono', monospace;
+  font-size: 11px; letter-spacing: .04em; padding-bottom: 1px;
+}
+.edu-list a:hover{ color: var(--fg); }
+
+/* "Events & Responsibilities" callout at the bottom of the edu card. */
+.edu-events{
+  margin-top: 18px; padding: 20px 24px;
+  border-radius: 6px;
+  background: rgba(255,255,255,.02);
+  border: 1px solid var(--border);
+  display: grid; grid-template-columns: 160px 1fr;
+  gap: 24px; align-items: start;
+}
+.edu-events .lab{
+  font-family:'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: .28em;
+  text-transform: uppercase; color: var(--fg-3);
+  padding-top: 3px;
+}
+.edu-events p{
+  color: var(--fg-2); font-size: 14.5px; line-height: 1.65;
+  font-weight: 300; margin: 0;
+}
+.edu-events p b{ color: var(--fg); font-weight: 600; }
+
+
+/* ============ DYNAMIC NETWORK — copy column + stats + brand tile grid ============ */
+
+.dn-grid{
+  display: grid; grid-template-columns: 1.4fr 1fr;
+  gap: 48px; align-items: start;
+}
+.dn-copy p{
+  color: var(--fg-2); font-size: 16px; line-height: 1.75;
+  font-weight: 300; margin: 0; max-width: 600px;
+}
+.dn-copy p + p{ margin-top: 16px; }
+.dn-copy p b{ color: var(--fg); font-weight: 600; }
+
+/* Three-column stat strip ("Total reach / Audience / Markets"). */
+.dn-stat-strip{
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1px;                       /* 1px gap reveals the bg colour as a divider */
+  background: var(--border);
+  margin-top: 28px;
+  border: 1px solid var(--border); border-radius: 6px;
+  overflow: hidden;
+}
+.dn-stat-strip .ni{
+  background: var(--bg);
+  padding: 24px 22px;
+  display: flex; flex-direction: column; gap: 6px;
+}
+.dn-stat-strip .ni .lab{
+  font-family:'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: .22em;
+  text-transform: uppercase; color: var(--fg-3);
+}
+.dn-stat-strip .ni .num{
+  font-weight: 800; font-size: 34px; letter-spacing: -.04em; line-height: 1;
+  background: var(--grad);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* 2-column grid of mini brand cards (Saudi United, UAE United, etc). */
+.net-grid{
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+.brand-card{
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 18px 18px 16px;
+  display: flex; align-items: center; gap: 14px;
+  transition: border-color .25s, transform .25s;
+}
+.brand-card:hover{
+  border-color: var(--border-2);
+  transform: translateY(-2px);
+}
+.brand-card .avatar{
+  width: 46px; height: 46px; border-radius: 999px;
+  background: #000;
+  border: 1px solid var(--border-2);
+  overflow: hidden; position: relative; flex-shrink: 0;
+  display: grid; place-items: center;
+}
+.brand-card .avatar img{
+  width: 100%; height: 100%; object-fit: cover; display: block;
+}
+.brand-card .meta{ flex: 1; min-width: 0; }
+.brand-card .name{
+  font-weight: 700; font-size: 15px; letter-spacing: -.02em;
+}
+.brand-card .handle{
+  color: var(--fg-3); font-size: 11px;
+  font-family:'JetBrains Mono', monospace;
+  margin-top: 2px; letter-spacing: .02em;
+}
+.brand-card .foll{
+  font-weight: 700; font-size: 18px;
+  letter-spacing: -.02em; flex-shrink: 0;
+}
+/* "Flagship" variant for the Saudi United tile (gradient tint). */
+.brand-card.flagship{
+  background: linear-gradient(160deg,
+    rgba(255,61,127,.10),
+    rgba(157,78,221,.06) 70%,
+    var(--surface) 100%);
+  border-color: rgba(255,61,127,.3);
+}
+.brand-card.flagship .foll{
+  background: var(--grad);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+
+/* ============ CASE STUDY — text column, results row, pull quote, vs row ============ */
+
+.case-text .block{ margin-bottom: 30px; }
+.case-text .lab{
+  display: flex; align-items: center; gap: 12px;
+  font-family:'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: .28em;
+  text-transform: uppercase; margin-bottom: 10px;
+}
+.case-text .lab span{
+  background: var(--grad);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 600;
+}
+.case-text .lab .gline{ width: 22px; height: 1px; background: var(--grad); }
+.case-text p{
+  color: var(--fg-2); font-size: 16px; line-height: 1.7;
+  font-weight: 300; margin: 0; max-width: 580px;
+}
+.case-text p b{ color: var(--fg); font-weight: 600; }
+
+/* The "results" row with big gradient numbers (89.6K, 2.1M, ...). */
+.case-results{
+  margin-top: 20px; padding: 26px 30px;
+  border-radius: 8px;
+  border: 1px solid rgba(255,61,127,.32);
+  background: linear-gradient(135deg, rgba(255,122,69,.07), rgba(157,78,221,.07));
+  display: grid; gap: 22px;
+}
+.case-results.three{ grid-template-columns: repeat(3, 1fr); }
+.case-results.four { grid-template-columns: repeat(4, 1fr); }
+.case-results .ri .num{
+  font-weight: 800;
+  font-size: clamp(24px, 2.6vw, 36px);
+  letter-spacing: -.035em; line-height: 1;
+  background: var(--grad);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.case-results .ri .num.serif{
+  font-family:'Instrument Serif', serif;
+  font-style: italic; font-weight: 400; font-size: 26px;
+  letter-spacing: -.01em;
+}
+.case-results .ri .lab{
+  margin-top: 6px; color: var(--fg-2);
+  font-size: 12px; line-height: 1.45;
+}
+
+/* Italic serif pull-quote with a pink left bar. */
+.case-pull{
+  margin-top: 24px; padding: 12px 20px;
+  border-left: 2px solid #FF3D7F;
+  font-family:'Instrument Serif', serif;
+  font-style: italic; font-size: 20px; line-height: 1.4;
+  color: var(--fg); max-width: 580px;
+}
+
+/* Two-column "vs competitor" comparison row. */
+.vs-row{
+  margin-top: 18px;
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 1px; background: var(--border);
+  border: 1px solid var(--border); border-radius: 8px; overflow: hidden;
+}
+.vs-row .vi{
+  background: var(--bg);
+  padding: 18px 20px;
+  display: flex; flex-direction: column; gap: 8px;
+}
+.vs-row .vi .head{ display: flex; align-items: baseline; gap: 10px; }
+.vs-row .vi .mult{
+  font-weight: 800; font-size: 32px;
+  letter-spacing: -.04em; line-height: 1;
+  background: var(--grad);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.vs-row .vi .vlab{
+  font-family:'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: .22em;
+  text-transform: uppercase; color: var(--fg-3);
+}
+.vs-row .vi .vdesc{
+  color: var(--fg-2); font-size: 13px; line-height: 1.5; font-weight: 300;
+}
+.vs-row .vi .vdesc b{ color: var(--fg); font-weight: 600; }
+
+
+/* ============ COLLABORATIONS — side block + logo grid + pill list ============ */
+
+.collab-block{
+  border: 1px solid var(--border); border-radius: 8px;
+  padding: 18px 18px;
+  background: var(--surface);
+  position: relative; overflow: hidden;
+}
+.collab-block::before{
+  content:""; position: absolute; top: 0; left: 0; right: 0;
+  height: 1px; background: var(--grad); opacity: .6;
+}
+.collab-block .cb-head{
+  display: flex; align-items: center; gap: 12px; margin-bottom: 14px;
+  font-family:'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: .26em;
+  text-transform: uppercase;
+}
+.collab-block .cb-head .gline{ width: 18px; height: 1px; background: var(--grad); }
+.collab-block .cb-head span{
+  background: var(--grad);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 600;
+}
+
+.collab-list{ display: flex; flex-wrap: wrap; gap: 6px; }
+
+/* Logo grid variant of .collab-list (Noon, Muzz, etc). */
+.collab-list.logos{ display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+.collab-list.logos .logo{
+  width: calc((100% - 24px) / 4);
+  aspect-ratio: 1 / 1;
+  background: #000;
+  border: 1px solid var(--border-2); border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  text-align: center;
+  font-family:'JetBrains Mono', monospace;
+  font-size: 9.5px; letter-spacing: .1em;
+  color: var(--fg-2); text-transform: uppercase;
+  padding: 8px; line-height: 1.25;
+  position: relative; overflow: hidden;
+}
+.collab-list.logos .logo.has-img{
+  background: #fff; padding: 0; border-color: var(--border);
+}
+.collab-list.logos .logo.has-img.dark{ background: #000; }
+.collab-list.logos .logo.has-img.dark img{ padding: 0; object-fit: cover; }
+.collab-list.logos .logo img{
+  width: 100%; height: 100%;
+  object-fit: contain; display: block; padding: 6px;
+}
+.collab-list.logos .logo:not(.has-img)::after{
+  content:""; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(circle at 30% 20%, rgba(255,255,255,.04), transparent 60%);
+}
+
+/* Pill-shaped collaborator chip with a tiny gradient dot. */
+.collab-list .ci{
+  border: 1px solid var(--border-2); border-radius: 999px;
+  background: rgba(255,255,255,.02);
+  padding: 10px 16px 10px 26px;
+  display: inline-flex; align-items: center;
+  color: var(--fg); font-family:'Inter', sans-serif;
+  font-size: 15px; letter-spacing: -.01em;
+  font-weight: 500; line-height: 1.1; white-space: nowrap;
+  position: relative;
+}
+.collab-list .ci::before{
+  content:""; position: absolute; left: 12px; top: 50%;
+  width: 5px; height: 5px; border-radius: 999px;
+  background: var(--grad); transform: translateY(-50%); opacity: .95;
+}
+
+
+/* ============ PROOF IMAGES — phone-grid screenshots in cases ============ */
+
+.proof-set{ display: flex; flex-direction: column; gap: 14px; }
+.proof-row{ display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.proof{
+  position: relative;
+  border: 1px solid var(--border-2); border-radius: 12px;
+  overflow: hidden; background: #000;
+}
+.proof::before{
+  content:""; position: absolute; inset: 0; border-radius: 12px;
+  background: var(--grad); padding: 1px;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude;
+  opacity: .3; pointer-events: none; z-index: 2;
+}
+.proof img{ width: 100%; height: auto; display: block; }
+/* Floating uppercase label in the corner of a proof image. */
+.proof .plab{
+  position: absolute; top: 12px; left: 14px; z-index: 3;
+  font-family:'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: .22em;
+  text-transform: uppercase; color: #fff;
+  background: rgba(10,10,10,.72);
+  padding: 6px 10px; border-radius: 3px;
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  display: flex; align-items: center; gap: 8px;
+}
+.proof .plab .dot{ width: 6px; height: 6px; border-radius: 999px; background: #FF3D7F; }
+/* Tall portrait variant for Instagram-feed screenshots. */
+.proof.feed{ aspect-ratio: 1 / 1.55; background: #0a0907; }
+.proof.feed img{ width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+
+
+/* ============ ARTWORK — featured image, YouTube bar, tile grid ============ */
+
+.art-hero{
+  display: grid; grid-template-columns: 1.15fr 1fr;
+  gap: 48px; align-items: center; margin-bottom: 28px;
+}
+.art-text p{
+  color: var(--fg-2); font-size: 17px; line-height: 1.75;
+  max-width: 580px; font-weight: 300; margin: 0 0 18px;
+}
+.art-text p:last-child{ margin-bottom: 0; }
+.art-text p b{ color: var(--fg); font-weight: 600; }
+
+.art-feature{
+  position: relative; aspect-ratio: 4/3;
+  border-radius: 8px; overflow: hidden;
+  border: 1px solid var(--border-2); background: #000;
+}
+.art-feature img{ width: 100%; height: 100%; object-fit: cover; display: block; }
+.art-feature::before{
+  content:""; position: absolute; inset: 0; pointer-events: none; z-index: 2;
+  background: linear-gradient(180deg, transparent 55%, rgba(0,0,0,.45));
+}
+.art-feature .ftag{
+  position: absolute; bottom: 14px; left: 16px; z-index: 3;
+  font-family:'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: .24em;
+  text-transform: uppercase; color: #fff; opacity: .86;
+  display: flex; align-items: center; gap: 8px;
+}
+.art-feature .ftag .dot{ width: 6px; height: 6px; border-radius: 999px; background: #FF3D7F; }
+
+/* "Watch the channel" bar that links to YouTube. */
+.yt-bar{
+  display: flex; align-items: center; gap: 18px;
+  padding: 18px 22px;
+  border: 1px solid var(--border-2); border-radius: 10px;
+  background: var(--surface);
+  text-decoration: none; color: var(--fg);
+  margin: 0 0 28px;
+  transition: border-color .25s, transform .25s;
+  position: relative; overflow: hidden;
+}
+.yt-bar::before{
+  content:""; position: absolute; top: 0; left: 0; right: 0;
+  height: 1px; background: var(--grad); opacity: .5;
+}
+.yt-bar:hover{
+  border-color: rgba(255,255,255,.16);
+  transform: translateY(-1px);
+}
+.yt-bar .yt-mark{ width: 54px; height: 38px; flex-shrink: 0; }
+.yt-bar .yt-mark svg{ width: 100%; height: 100%; display: block; }
+.yt-bar .yt-meta{ flex: 1; min-width: 0; }
+.yt-bar .yt-name{
+  font-family:'Instrument Serif', serif;
+  font-style: italic; font-size: 26px;
+  letter-spacing: -.01em; line-height: 1; margin-bottom: 6px;
+}
+.yt-bar .yt-sub{
+  font-family:'JetBrains Mono', monospace;
+  font-size: 10.5px; letter-spacing: .2em;
+  text-transform: uppercase; color: var(--fg-3);
+}
+.yt-bar .yt-cta{
+  font-family:'JetBrains Mono', monospace;
+  font-size: 10.5px; letter-spacing: .22em;
+  text-transform: uppercase; color: var(--fg);
+  padding: 10px 18px;
+  border: 1px solid var(--border-2); border-radius: 999px;
+  white-space: nowrap;
+}
+
+/* 3-column grid of artwork thumbnails. */
+.art-grid{
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.art-tile{
+  position: relative; aspect-ratio: 4/3;
+  overflow: hidden;
+  border: 1px solid var(--border-2); border-radius: 8px;
+  background: #000;
+}
+.art-tile img{
+  width: 100%; height: 100%; object-fit: cover;
+  display: block; transition: transform .5s;
+}
+.art-tile:hover img{ transform: scale(1.03); }
+
+
+/* ============ ACHIEVEMENTS — grid of recognition cards + bottom number strip ============ */
+
+.ach-grid{ display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.ach{
+  border: 1px solid var(--border); border-radius: 6px;
+  background: var(--surface);
+  padding: 22px 24px;
+  position: relative; overflow: hidden;
+  display: grid; grid-template-columns: 52px 1fr;
+  gap: 18px; align-items: start;
+}
+.ach .n{
+  font-family:'Instrument Serif', serif;
+  font-style: italic; font-size: 44px; line-height: 1;
+  background: var(--grad);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -.02em;
+}
+.ach .name{ font-weight: 700; font-size: 17px; letter-spacing: -.02em; line-height: 1.25; }
+.ach .desc{ color: var(--fg-2); font-size: 13.5px; margin-top: 8px; line-height: 1.6; }
+.ach .ctx{
+  margin-top: 14px; display: inline-block;
+  font-family:'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: .22em;
+  text-transform: uppercase; color: var(--fg-3);
+  padding: 5px 9px;
+  border: 1px solid var(--border-2); border-radius: 3px;
+}
+
+/* "Total audience / Monthly reach / ..." 4-up bottom strip. */
+.num-strip{
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  margin-top: 32px;
+}
+.num-strip .ni{
+  padding: 24px 22px;
+  border-right: 1px solid var(--border);
+  display: flex; flex-direction: column; gap: 6px;
+}
+.num-strip .ni:last-child{ border-right: none; }
+.num-strip .ni .lab{
+  font-family:'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: .24em;
+  text-transform: uppercase; color: var(--fg-3);
+}
+.num-strip .ni .num{
+  font-weight: 800; font-size: clamp(30px, 3.4vw, 48px);
+  letter-spacing: -.04em; line-height: 1;
+  background: var(--grad);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.num-strip .ni .desc{
+  color: var(--fg-2); font-size: 12.5px; line-height: 1.5; max-width: 200px;
+}
+
+
+/* ============ INDUSTRY EXPERIENCE — featured image + body card ============ */
+
+.ix-feature{
+  display: grid; grid-template-columns: 1.2fr 1fr;
+  gap: 24px; align-items: start; margin-top: 8px;
+}
+.ix-feature > *{ min-width: 0; }
+
+/* Big hero image with gradient outline and a caption overlay at the bottom. */
+.ix-hero{
+  position: relative; margin: 0;
+  border-radius: 10px; overflow: hidden;
+  border: 1px solid var(--border-2);
+  background: #000; width: 100%; aspect-ratio: 5/4;
+  box-shadow: 0 30px 80px -30px rgba(0,0,0,.7);
+}
+.ix-hero::before{
+  content:""; position: absolute; inset: 0; border-radius: 10px;
+  background: var(--grad); padding: 1px;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude;
+  opacity: .32; pointer-events: none; z-index: 3;
+}
+.ix-hero img{ width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; }
+.ix-hero figcaption{
+  position: absolute; left: 0; right: 0; bottom: 0; z-index: 2;
+  padding: 64px 28px 24px;
+  background: linear-gradient(180deg,
+    transparent, rgba(10,10,10,.85) 60%, rgba(10,10,10,.94));
+  display: flex; flex-direction: column; gap: 8px; color: #fff;
+}
+.ix-tag{
+  align-self: flex-start;
+  font-family:'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: .22em; text-transform: uppercase;
+  background: rgba(10,10,10,.7);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  padding: 7px 11px; border-radius: 3px;
+  border: 1px solid rgba(255,255,255,.08);
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.ix-tag .dot{ width: 6px; height: 6px; border-radius: 999px; background: #FF3D7F; }
+.ix-cap-title{
+  font-family:'Inter', sans-serif; font-weight: 800;
+  font-size: clamp(22px, 2.4vw, 32px);
+  letter-spacing: -.025em; line-height: 1.05; margin-top: 6px;
+}
+.ix-cap-title .ital{
+  font-family:'Instrument Serif', serif;
+  font-style: italic; font-weight: 400; letter-spacing: -.01em;
+  background: var(--grad);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.ix-cap-sub{
+  color: var(--fg-2); font-size: 14px; line-height: 1.55;
+  max-width: 560px; font-weight: 300;
+}
+
+/* Body card sitting next to the .ix-hero with paragraphs and a meta list. */
+.ix-body{
+  border: 1px solid var(--border); border-radius: 10px;
+  background: var(--surface);
+  padding: 26px 26px;
+  display: flex; flex-direction: column; gap: 14px;
+  position: relative; overflow: hidden; min-width: 0;
+}
+.ix-body::before{
+  content:""; position: absolute; top: 0; left: 0; right: 0;
+  height: 2px; background: var(--grad);
+}
+.ix-body .ix-lead{
+  color: var(--fg); font-size: 15.5px; line-height: 1.55;
+  font-weight: 400; margin: 0;
+  letter-spacing: -.005em; word-wrap: break-word;
+}
+.ix-body p{
+  color: var(--fg-2); font-size: 14px; line-height: 1.6;
+  font-weight: 300; margin: 0;
+  word-wrap: break-word; overflow-wrap: break-word;
+}
+.ix-body p b{ color: var(--fg); font-weight: 600; }
+
+.ix-meta-rows{
+  margin-top: auto; padding-top: 18px;
+  display: flex; flex-direction: column;
+}
+.ix-row{
+  display: flex; justify-content: space-between; align-items: baseline;
+  gap: 16px; padding: 14px 0;
+  border-top: 1px solid var(--border);
+}
+.ix-row .k{
+  font-family:'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: .2em;
+  text-transform: uppercase; color: var(--fg-3);
+}
+.ix-row .v{
+  font-weight: 500; font-size: 13px;
+  color: var(--fg); letter-spacing: -.005em; text-align: right;
+}
+
+
+/* ============ INDUSTRY EXP. — supporting trios + Vaseline×ROW campaign ============ */
+
+.ix-trio{ margin-top: 56px; }
+.ix-trio-head, .ix-camp-head{
+  display: grid; grid-template-columns: auto 1fr;
+  gap: 20px 22px; align-items: start; margin-bottom: 22px;
+}
+.ix-camp-head{ grid-template-columns: auto 1fr auto; }
+
+/* "01", "02" small index pill. */
+.ix-num{
+  font-family:'JetBrains Mono', monospace;
+  font-size: 11px; letter-spacing: .24em;
+  padding: 8px 10px;
+  border: 1px solid var(--border-2); border-radius: 4px;
+  color: var(--fg); background: rgba(255,255,255,.02);
+}
+.ix-trio-head h3, .ix-camp-head h3{
+  font-family:'Inter', sans-serif; font-weight: 700;
+  font-size: clamp(22px, 2.4vw, 30px);
+  letter-spacing: -.025em; line-height: 1.1; margin: 0 0 8px;
+}
+.ix-camp-head h3 .x{
+  font-family:'Instrument Serif', serif;
+  font-style: italic; font-weight: 400;
+  background: var(--grad);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+  padding: 0 4px;
+}
+.ix-trio-head p, .ix-camp-head p{
+  color: var(--fg-2); font-size: 15px; line-height: 1.65;
+  font-weight: 300; margin: 0; max-width: 680px;
+}
+.ix-trio-head p b, .ix-camp-head p b{ color: var(--fg); font-weight: 600; }
+.ix-camp-chips{
+  display: flex; gap: 8px; flex-wrap: wrap;
+  justify-content: flex-end; align-items: center;
+}
+
+.ix-trio-grid{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.ix-card{
+  position: relative; margin: 0;
+  border-radius: 8px; overflow: hidden;
+  border: 1px solid var(--border);
+  background: #0c0c0c; aspect-ratio: 4/5;
+}
+.ix-card img{ width: 100%; height: 100%; object-fit: cover; }
+/* Slight crop tuning per card. */
+.ix-card.r4w    img{ object-position: 50% 18%; }
+.ix-card.studio img{ object-position: 50% 50%; }
+.ix-card.balad  img{ object-position: 50% 30%; }
+.ix-card figcaption{
+  position: absolute; left: 12px; bottom: 12px; right: 12px; z-index: 2;
+  display: flex; flex-direction: column; gap: 2px;
+  background: rgba(10,10,10,.82);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,.06);
+  padding: 10px 12px; border-radius: 4px;
+}
+.ix-card-loc{
+  font-family:'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: .22em;
+  text-transform: uppercase; color: #fff;
+}
+.ix-card-meta{
+  color: var(--fg-2); font-size: 12px;
+  font-weight: 300; letter-spacing: -.005em;
+}
+
+.ix-campaign{ margin-top: 56px; }
+.ix-camp-grid{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.ix-camp-tile{
+  position: relative; margin: 0;
+  border-radius: 8px; overflow: hidden;
+  border: 1px solid var(--border);
+  background: #0c0c0c; aspect-ratio: 4/5;
+}
+.ix-camp-tile img{ width: 100%; height: 100%; object-fit: cover; }
+.ix-camp-tile.a img{ object-position: 50% 30%; }
+.ix-camp-tile.b img{ object-position: 50% 65%; }
+.ix-camp-tile.c img{ object-position: 50% 22%; }
+.ix-camp-tile figcaption{
+  position: absolute; left: 0; right: 0; bottom: 0;
+  padding: 36px 14px 12px;
+  background: linear-gradient(180deg, transparent, rgba(10,10,10,.85));
+  color: #fff;
+}
+.ix-camp-tile figcaption span{
+  font-family:'JetBrains Mono', monospace;
+  font-size: 10.5px; letter-spacing: .18em;
+  text-transform: uppercase;
+}
+
+
+/* ============ INDUSTRY EXP. — partners / agency logo strip ============ */
+
+.ix-partners{
+  margin-top: 56px; padding: 28px 28px 18px;
+  border: 1px solid var(--border); border-radius: 10px;
+  background: linear-gradient(160deg, rgba(255,255,255,.02), rgba(255,255,255,0) 60%), var(--surface);
+  position: relative; overflow: hidden;
+}
+.ix-partners::before{
+  content:""; position: absolute; top: 0; left: 0; right: 0;
+  height: 2px; background: var(--grad); opacity: .7;
+}
+.ix-part-head{
+  display: grid; grid-template-columns: auto 1fr;
+  gap: 24px; align-items: center;
+  padding-bottom: 22px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 22px;
+}
+.ix-part-head p{
+  color: var(--fg-2); font-size: 14.5px; line-height: 1.6;
+  font-weight: 300; margin: 0;
+}
+.ix-part-head p b{ color: var(--fg); font-weight: 600; }
+
+.ix-logo-strip{
+  display: grid; grid-template-columns: repeat(5, 1fr);
+  align-items: center; justify-items: center;
+  padding: 14px 4px 6px;
+}
+.lg{
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 14px;
+  padding: 20px 12px; width: 100%;
+  transition: opacity .25s;
+  opacity: .78;
+}
+.lg:hover{ opacity: 1; }
+.lg .logo-mark{
+  height: 54px;
+  display: flex; align-items: center; justify-content: center;
+}
+.lg img{
+  max-height: 54px; max-width: 130px;
+  width: auto; height: auto; object-fit: contain; display: block;
+}
+.lg span{
+  font-family:'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: .22em;
+  text-transform: uppercase; color: var(--fg-3); text-align: center;
+}
+.lg.dark  img{ background: #0d0d0d; border-radius: 6px; padding: 4px; }
+.lg.light img{ background: #ffffff; border-radius: 6px; padding: 6px; }
+
+.ix-partners-foot{
+  margin-top: 18px; padding-top: 18px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  font-family:'JetBrains Mono', monospace;
+  font-size: 10.5px; letter-spacing: .2em;
+  text-transform: uppercase; color: var(--fg-3);
+}
+.ix-partners-foot b{ color: var(--fg-2); font-weight: 500; }
+
+
+/* ============ PERFORMANCE — two side-by-side bar charts ============ */
+
+.perf-split{ display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.perf-side{
+  position: relative;
+  border: 1px solid var(--border); border-radius: 10px;
+  background: linear-gradient(180deg, rgba(255,255,255,.015), rgba(255,255,255,0)), var(--surface);
+  padding: 22px 24px;
+  overflow: hidden;
+  display: flex; flex-direction: column;
+}
+.perf-side::before{
+  content:""; position: absolute; top: 0; left: 0; right: 0;
+  height: 2px; background: var(--grad); opacity: .7;
+}
+.ph-head{
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+.ph-title{
+  font-family:'JetBrains Mono', monospace;
+  font-size: 10.5px; letter-spacing: .22em;
+  text-transform: uppercase; color: var(--fg);
+}
+.ph-title b{ color: #FF3D7F; font-weight: 600; }
+.ph-axis{
+  font-family:'JetBrains Mono', monospace;
+  font-size: 9.5px; letter-spacing: .18em;
+  color: var(--fg-3); text-transform: uppercase;
+}
+.ph-chart{ width: 100%; height: auto; display: block; margin: 14px 0 6px; }
+
+/* Horizontal ranked bar chart. */
+.ph-bars{ display: flex; flex-direction: column; gap: 9px; margin: 18px 0 10px; }
+.ph-bar-row{
+  display: grid; grid-template-columns: 130px 1fr 64px;
+  gap: 14px; align-items: center;
+}
+.ph-bar-name{
+  font-family:'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: .04em;
+  color: var(--fg-2); white-space: nowrap;
+  overflow: hidden; text-overflow: ellipsis;
+  display: flex; flex-direction: column; gap: 1px;
+}
+.ph-bar-name .sub{
+  font-size: 8.5px; color: var(--fg-3);
+  letter-spacing: .1em; text-transform: uppercase;
+}
+/* The "us" row (Saudi United / Saudi Insider) is highlighted. */
+.ph-bar-row.us .ph-bar-name      { color: #fff; font-weight: 600; }
+.ph-bar-row.us .ph-bar-name .sub { color: #FFB7CB; }
+
+.ph-bar-track{
+  position: relative; height: 18px;
+  background: #141414;
+  border: 1px solid #1e1e1e; border-radius: 3px;
+  overflow: hidden;
+}
+.ph-bar-fill{
+  position: absolute; top: 0; left: 0; bottom: 0;
+  background: #2c2c2c;
+  border-right: 1px solid #3a3a3a;
+  border-radius: 2px;
+}
+.ph-bar-row.us .ph-bar-fill{
+  background: var(--grad);
+  border-right-color: transparent;
+  box-shadow: 0 0 16px rgba(255,61,127,.25) inset;
+}
+.ph-bar-val{
+  font-family:'JetBrains Mono', monospace;
+  font-size: 10px; color: var(--fg-3);
+  text-align: right; letter-spacing: .04em;
+}
+.ph-bar-row.us .ph-bar-val{ color: #fff; font-weight: 600; }
+
+/* Scatter-chart styling (kept for legacy SVG charts, not used everywhere). */
+.ph-chart .grid line       { stroke: #191919; stroke-width: 1; }
+.ph-chart .axis text       { font-family:'JetBrains Mono', monospace; font-size: 8.5px; fill: #6E6E6E; letter-spacing: .05em; }
+.ph-chart .axis line       { stroke: #2a2a2a; }
+.ph-chart .dot             { fill: #2c2c2c; stroke: #3a3a3a; stroke-width: 1; }
+.ph-chart .dot.us          { stroke: #FF3D7F; stroke-width: 1.6; }
+.ph-chart .lbl             { font-family:'JetBrains Mono', monospace; font-size: 8.5px; fill: #A8A8A8; }
+.ph-chart .lbl.us          { fill: #fff; font-weight: 600; font-size: 10px; }
+.ph-chart .alabel          { font-family:'JetBrains Mono', monospace; font-size: 9px; fill: #6E6E6E; letter-spacing: .16em; text-transform: uppercase; }
+.ph-chart .ref             { stroke: #FF3D7F; stroke-width: 1; stroke-dasharray: 3 4; opacity: .35; }
+
+.ph-legend{
+  display: flex; gap: 18px; align-items: center; padding: 4px 0;
+  font-family:'JetBrains Mono', monospace;
+  font-size: 9.5px; letter-spacing: .16em;
+  text-transform: uppercase; color: var(--fg-3);
+  flex-wrap: wrap;
+}
+.ph-legend .lg-item{ display: inline-flex; align-items: center; gap: 8px; }
+.ph-legend .lg-dot{
+  width: 9px; height: 9px; border-radius: 999px;
+  background: #2c2c2c; border: 1px solid #3a3a3a;
+}
+.ph-legend .lg-dot.us{
+  background: radial-gradient(circle at 30% 30%, #FF7A45, #FF3D7F 60%, #9D4EDD);
+  border-color: #FF3D7F;
+  box-shadow: 0 0 10px rgba(255,61,127,.6);
+}
+/* "Takeaway" line under each chart. */
+.ph-take{
+  margin-top: auto; padding-top: 14px;
+  border-top: 1px solid var(--border);
+  font-family:'Instrument Serif', serif; font-style: italic;
+  font-size: clamp(15px, 1.3vw, 18px);
+  line-height: 1.5; color: var(--fg);
+  letter-spacing: -.005em;
+}
+.ph-take .pin{
+  display: inline-flex; align-items: center; gap: 8px; margin-right: 10px;
+  font-family:'JetBrains Mono', monospace; font-style: normal;
+  font-size: 9.5px; letter-spacing: .2em;
+  text-transform: uppercase; color: #FF3D7F;
+}
+.ph-take .pin::before{
+  content:""; width: 6px; height: 6px; border-radius: 999px;
+  background: #FF3D7F; box-shadow: 0 0 8px rgba(255,61,127,.7);
+}
+.ph-take b{
+  font-family:'Instrument Serif', serif; font-weight: 400;
+  background: var(--grad);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+
+/* ============ NEWS PIPELINE — horizontal 5-step flow ============ */
+
+.pipe-flow{
+  display: grid; grid-template-columns: repeat(5, 1fr);
+  gap: 0;
+  border: 1px solid var(--border); border-radius: 10px;
+  background: var(--surface);
+  margin-bottom: 36px;
+  overflow: hidden; position: relative;
+}
+.pipe-flow::before{
+  content:""; position: absolute; top: 0; left: 0; right: 0;
+  height: 2px; background: var(--grad); opacity: .7;
+}
+.pf-node{
+  padding: 20px 18px 18px;
+  position: relative;
+  border-right: 1px solid var(--border);
+  display: flex; flex-direction: column; gap: 8px;
+}
+.pf-node:last-child{ border-right: none; }
+.pf-node .pf-num{
+  font-family:'JetBrains Mono', monospace;
+  font-size: 10px; color: #FF3D7F;
+  letter-spacing: .2em; text-transform: uppercase;
+}
+.pf-node .pf-title{
+  font-family:'Inter', sans-serif; font-weight: 700;
+  font-size: 14.5px; letter-spacing: -.015em; color: var(--fg);
+}
+.pf-node .pf-sub{
+  font-family:'JetBrains Mono', monospace;
+  font-size: 10px; line-height: 1.5;
+  color: var(--fg-3); letter-spacing: .04em;
+}
+/* Small chevron disc between flow nodes. */
+.pf-node .pf-arrow{
+  position: absolute; right: -7px; top: 50%; transform: translateY(-50%);
+  width: 14px; height: 14px; border-radius: 999px;
+  background: var(--bg); border: 1px solid var(--border-2);
+  display: grid; place-items: center; z-index: 2;
+  font-family:'JetBrains Mono', monospace;
+  font-size: 10px; color: #FF3D7F;
+}
+.pf-node:last-child .pf-arrow{ display: none; }
+
+
+/* ============ NEWS PIPELINE — overview, module cards, tech list ============ */
+
+.pipe-overview{
+  border: 1px solid var(--border); border-radius: 8px;
+  background: var(--surface);
+  padding: 22px 24px; margin-bottom: 22px;
+}
+.pipe-overview .lab{
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family:'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: .24em;
+  text-transform: uppercase; color: var(--fg-3);
+  margin-bottom: 10px;
+}
+.pipe-overview .lab .gline{ width: 18px; height: 1px; background: var(--grad); }
+.pipe-overview p{
+  color: var(--fg-2); font-size: 15px; line-height: 1.65;
+  font-weight: 300; margin: 0;
+}
+.pipe-overview p b{ color: var(--fg); font-weight: 600; }
+
+/* 2-column grid of module cards (M1..M5). */
+.pipe-modules{
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 1px; background: var(--border);
+  border: 1px solid var(--border); border-radius: 8px;
+  overflow: hidden; margin-bottom: 22px;
+}
+.pm-card{
+  background: var(--bg);
+  padding: 18px 18px 16px;
+  display: flex; flex-direction: column; gap: 8px;
+  position: relative;
+}
+.pm-card.full{ grid-column: span 2; }
+.pm-head{ display: flex; align-items: center; gap: 10px; }
+.pm-num{
+  font-family:'JetBrains Mono', monospace;
+  font-size: 9.5px; letter-spacing: .2em;
+  color: #FF3D7F; text-transform: uppercase;
+}
+.pm-title{
+  font-family:'Inter', sans-serif; font-weight: 700;
+  font-size: 13.5px; letter-spacing: -.01em; color: var(--fg);
+}
+.pm-list{
+  font-family:'JetBrains Mono', monospace;
+  font-size: 10.5px; line-height: 1.65;
+  color: var(--fg-2); letter-spacing: .02em;
+  display: flex; flex-wrap: wrap; gap: 6px;
+}
+.pm-tag{
+  padding: 3px 8px;
+  border: 1px solid var(--border-2); border-radius: 999px;
+  background: rgba(255,255,255,.015);
+  color: var(--fg-2);
+  font-size: 10px; letter-spacing: .04em;
+}
+
+/* "Technical highlights" tinted box below the modules. */
+.pipe-tech{
+  border: 1px solid rgba(255,61,127,.25); border-radius: 8px;
+  background: linear-gradient(160deg,
+    rgba(255,61,127,.06), rgba(157,78,221,.03) 70%, var(--surface));
+  padding: 20px 22px 18px;
+}
+.pipe-tech .lab{
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family:'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: .24em;
+  text-transform: uppercase; color: #FF3D7F;
+  margin-bottom: 14px;
+}
+.pipe-tech .lab .gline{ width: 18px; height: 1px; background: var(--grad); }
+.pipe-tech ul{
+  list-style: none; margin: 0; padding: 0;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.pipe-tech li{
+  color: var(--fg-2); font-size: 13.5px; line-height: 1.55;
+  font-weight: 300;
+  padding-left: 22px; position: relative;
+}
+.pipe-tech li::before{
+  content:""; position: absolute; left: 0; top: 8px;
+  width: 10px; height: 1px; background: var(--grad);
+}
+.pipe-tech li b{ color: var(--fg); font-weight: 600; }
+
+
+/* ============ NEWS PIPELINE — visualisation (two phones + connector) ============ */
+
+.pipe-visuals{
+  position: relative;
+  display: grid; grid-template-columns: 1fr;
+  gap: 14px; padding: 8px 0;
+}
+.pipe-phones{
+  position: relative;
+  display: flex; justify-content: space-between; align-items: flex-start;
+  padding: 30px 8px 28px;
+}
+.pipe-phone{
+  width: 48%; aspect-ratio: 9/19;
+  border-radius: 22px; overflow: hidden;
+  position: relative;
+  border: 1px solid var(--border-2);
+  background: #000;
+  /* Layered shadow imitates a phone bezel. */
+  box-shadow: 0 20px 60px -20px rgba(0,0,0,.75),
+              0 0 0 6px #0a0a0a,
+              0 0 0 7px #1f1f1f;
+}
+.pipe-phone.source  { transform: translateY(-12px) rotate(-3deg); }
+.pipe-phone.delivery{ transform: translateY( 18px) rotate( 3deg); }
+.pipe-phone img{
+  width: 100%; height: 100%; object-fit: cover;
+  object-position: center top; display: block;
+}
+.pipe-phone .ptag{
+  position: absolute; bottom: 10px; left: 10px; right: 10px;
+  background: rgba(0,0,0,.75);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,.08); border-radius: 5px;
+  padding: 7px 10px;
+  display: flex; align-items: center; gap: 8px;
+  font-family:'JetBrains Mono', monospace;
+  font-size: 9px; letter-spacing: .16em;
+  text-transform: uppercase; color: #fff;
+}
+.pipe-phone .ptag .dot{
+  width: 6px; height: 6px; border-radius: 999px;
+  background: #FF3D7F; box-shadow: 0 0 8px rgba(255,61,127,.7);
+}
+.pipe-phone .pcaption{
+  position: absolute; top: 10px; left: 10px;
+  background: rgba(0,0,0,.7);
+  border: 1px solid rgba(255,255,255,.08); border-radius: 4px;
+  padding: 5px 8px;
+  font-family:'JetBrains Mono', monospace;
+  font-size: 9px; letter-spacing: .14em;
+  text-transform: uppercase; color: #FFB7CB;
+}
+
+/* Dashed SVG connector + "AI pipeline" pill between the two phones. */
+.pipe-link{
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+  width: 120px; height: 120px; z-index: 3; pointer-events: none;
+}
+.pipe-link svg{ width: 100%; height: 100%; display: block; overflow: visible; }
+.pipe-link .pl-pill{
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+  background: #0a0a0a;
+  border: 1px solid rgba(255,61,127,.35); border-radius: 999px;
+  padding: 6px 12px;
+  display: flex; align-items: center; gap: 6px;
+  font-family:'JetBrains Mono', monospace;
+  font-size: 9.5px; letter-spacing: .2em;
+  text-transform: uppercase; color: #fff; white-space: nowrap;
+  box-shadow: 0 8px 30px rgba(0,0,0,.6);
+}
+.pipe-link .pl-pill .dot{
+  width: 6px; height: 6px; border-radius: 999px;
+  background: var(--grad);
+  box-shadow: 0 0 10px rgba(255,61,127,.7);
+}
+
+/* Footer under the phones: "Source" + "Delivery" captions. */
+.pipe-vis-foot{
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+.pipe-vis-foot .vfi{ display: flex; flex-direction: column; gap: 6px; }
+.pipe-vis-foot .vfi .lab{
+  font-family:'JetBrains Mono', monospace;
+  font-size: 9.5px; letter-spacing: .2em;
+  text-transform: uppercase; color: #FF3D7F;
+}
+.pipe-vis-foot .vfi .desc{
+  color: var(--fg-2); font-size: 12.5px; line-height: 1.55; font-weight: 300;
+}
+.pipe-vis-foot .vfi .desc b{ color: var(--fg); font-weight: 600; }

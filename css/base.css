@@ -1,0 +1,81 @@
+/* ============================================================
+   BASE
+   Foundation styles: design tokens, reset, body, typography
+   and small re-usable text helpers used across the whole site.
+   ============================================================ */
+
+/* Box-sizing reset so padding/border don't add to declared widths. */
+*, *::before, *::after { box-sizing: border-box; }
+
+/* Design tokens. Change these and the whole site re-themes. */
+:root{
+  --bg:#0A0A0A;            /* page background */
+  --bg-2:#0E0E0E;          /* slightly lighter alt background */
+  --surface:#141414;       /* card/panel background */
+  --surface-2:#181818;     /* nested surface */
+  --border:#222;           /* default divider */
+  --border-2:#2c2c2c;      /* stronger divider */
+  --fg:#FAFAFA;            /* primary text */
+  --fg-2:#A8A8A8;          /* secondary text */
+  --fg-3:#6E6E6E;          /* muted text */
+  --fg-4:#3a3a3a;          /* very muted text */
+  --pink:#FF3D7F;
+  --orange:#FF7A45;
+  --purple:#9D4EDD;
+  --grad: linear-gradient(95deg,#FF7A45 0%,#FF3D7F 50%,#9D4EDD 100%);
+  --pad: clamp(22px, 3.4vw, 64px);   /* horizontal page padding (fluid) */
+}
+
+html, body{
+  margin:0; padding:0;
+  background: var(--bg); color: var(--fg);
+  font-family:'Inter', sans-serif; font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.5;
+  overflow-x: hidden;   /* belt-and-braces against horizontal scroll */
+}
+
+a   { color: inherit; }
+img { display: block; max-width: 100%; }
+
+/* -------- Text helpers used everywhere -------- */
+
+/* Apply the brand gradient to any text. */
+.grad-text{
+  background: var(--grad);
+  -webkit-background-clip:text; background-clip:text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Italic display serif (for emphasis words like "Network", "Benny"). */
+.ital{
+  font-family:'Instrument Serif', serif;
+  font-style: italic; font-weight: 400;
+  letter-spacing: -.01em;
+}
+.ital.grad{
+  background: var(--grad);
+  -webkit-background-clip:text; background-clip:text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Mono helper, useful for tiny labels and numbers. */
+.mono{ font-family:'JetBrains Mono', monospace; }
+
+/* Small uppercase eyebrow label sitting above a section heading. */
+.eyebrow{
+  font-family:'Inter', sans-serif; font-weight: 600;
+  font-size: 12px; letter-spacing: .28em; text-transform: uppercase;
+  color: var(--fg-2);
+  display: inline-flex; align-items: center; gap: 14px;
+}
+/* Gradient line that appears before an .eyebrow. */
+.eyebrow::before{
+  content:""; width: 32px; height: 1px;
+  background: var(--grad);
+  display: inline-block;
+}
+/* Centered variant (used in the contact section) */
+.eyebrow.center::before{ display: none; }
+.eyebrow.center{ display: inline-flex; align-items: center; gap: 14px; }
+.eyebrow.center .gline{ width: 32px; height: 1px; background: var(--grad); }
